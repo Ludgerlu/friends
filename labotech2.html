@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LABO-TECH — Produits chimiques et réactifs de laboratoire</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <style>
+    :root {
+      --bg: #F7FAF8;
+      --panel: #FFFFFF;
+      --line: #D9E2DD;
+      --lime: #2D8F5C;
+      --lime-dim: #4BAF7A;
+      --text: #1B2A22;
+      --steel: #5A7165;
+      --shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+    /* SIDEBAR */
+    .sidebar {
+      width: 230px;
+      flex-shrink: 0;
+      background: var(--panel);
+      border-right: 1px solid var(--line);
+      padding: 1.6rem 1.3rem;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+      z-index: 10;
+    }
+    .sidebar .brand {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--lime);
+      margin-bottom: 2rem;
+    }
+    .sidebar .brand span {
+      color: var(--steel);
+      font-weight: 400;
+      font-size: 0.75rem;
+      display: block;
+      margin-top: 0.3rem;
+    }
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .sidebar nav a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      text-decoration: none;
+      color: var(--steel);
+      padding: 0.55rem 0.6rem;
+      border-radius: 4px;
+      transition: 0.2s;
+    }
+    .sidebar nav a:hover {
+      color: var(--lime);
+      background: rgba(45, 143, 92, 0.08);
+    }
+    .sidebar .foot {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--steel);
+      line-height: 1.6;
+    }
+    .sidebar .foot .status-on {
+      color: var(--lime);
+    }
+
+    /* MAIN */
+    .main {
+      flex: 1;
+      min-width: 0;
+    }
+    .section {
+      padding: 3.2rem 2.6rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .section:last-child {
+      border-bottom: none;
+    }
+    .tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--lime-dim);
+      border: 1px solid var(--lime-dim);
+      padding: 0.25rem 0.7rem;
+      border-radius: 3px;
+      margin-bottom: 1.2rem;
+    }
+
+    /* HERO avec image de fond */
+    .hero {
+      position: relative;
+      padding: 4rem 2.6rem;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image: url('./labotech1.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.6) saturate(0.8);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(27,42,34,0.8) 0%, rgba(27,42,34,0.4) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      color: #fff;
+    }
+    .hero-content .tag {
+      border-color: rgba(255,255,255,0.5);
+      color: #fff;
+    }
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 600;
+      line-height: 1.15;
+      margin: 0 0 1.2rem;
+      color: #fff;
+    }
+    .hero-content h1 .g {
+      color: var(--lime);
+    }
+    .hero-content p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.1rem;
+      max-width: 50ch;
+      margin-bottom: 1.8rem;
+    }
+    .term {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--lime);
+      max-width: 400px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .term .l1 {
+      color: rgba(255,255,255,0.6);
+    }
+    .term .cursor {
+      display: inline-block;
+      width: 7px;
+      height: 14px;
+      background: var(--lime);
+      vertical-align: middle;
+      animation: blink 1s steps(1) infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .about-text p {
+      color: var(--steel);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .about-text strong {
+      color: var(--text);
+    }
+    .about-image {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+    }
+    .about-image img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* TITRES */
+    h2.stitle {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin: 0 0 0.4rem;
+    }
+    .ssub {
+      color: var(--steel);
+      max-width: 60ch;
+      margin-bottom: 1.8rem;
+      font-size: 0.95rem;
+    }
+
+    /* GRILLE PRODUITS HORIZONTALE */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: var(--panel);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      transition: transform 0.2s, box-shadow 0.2s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+    .product-card .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .product-card .card-body {
+      padding: 1.2rem 1.2rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card .card-body .code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--lime-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .product-card .card-body h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0.2rem 0 0.4rem;
+    }
+    .product-card .card-body p {
+      font-size: 0.9rem;
+      color: var(--steel);
+      flex: 1;
+      margin: 0 0 0.8rem;
+    }
+    .product-card .card-body .status {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 30px;
+      background: rgba(45, 143, 92, 0.1);
+      color: var(--lime);
+      border: 1px solid var(--lime-dim);
+      align-self: flex-start;
+    }
+    .product-card .card-body .status.quote {
+      background: rgba(90, 113, 101, 0.1);
+      color: var(--steel);
+      border-color: var(--steel);
+    }
+
+    /* TESTIMONIALS */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .testimonial-card {
+      background: var(--panel);
+      padding: 1.8rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      transition: 0.3s;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+    .testimonial-card .quote {
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .testimonial-card .quote::before {
+      content: "“";
+      font-size: 1.8rem;
+      color: var(--lime);
+      line-height: 0.8;
+      margin-right: 0.2rem;
+    }
+    .testimonial-card .quote::after {
+      content: "”";
+      font-size: 1.8rem;
+      color: var(--lime);
+      line-height: 0.8;
+      margin-left: 0.1rem;
+    }
+    .testimonial-card .author {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .testimonial-card .author .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--lime);
+      flex-shrink: 0;
+    }
+    .testimonial-card .author .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .testimonial-card .author .info .name {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .testimonial-card .author .info .role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1.6rem;
+      box-shadow: var(--shadow);
+    }
+    .kv {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.9rem;
+    }
+    .kv .k {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--lime-dim);
+      text-transform: uppercase;
+      width: 90px;
+      flex-shrink: 0;
+      padding-top: 0.15rem;
+    }
+    .kv a {
+      color: var(--text);
+      border-bottom: 1px solid var(--lime-dim);
+      text-decoration: none;
+    }
+    .field {
+      margin-bottom: 1rem;
+    }
+    .field label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      color: var(--steel);
+      margin-bottom: 0.35rem;
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 0.6rem 0.7rem;
+      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.9rem;
+    }
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--lime-dim);
+    }
+    .btn-term {
+      background: var(--lime);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-term:hover {
+      background: #3aa56c;
+    }
+
+    footer {
+      padding: 1.4rem 2.6rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--steel);
+      border-top: 1px solid var(--line);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .layout {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+      .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .sidebar .foot {
+        display: none;
+      }
+      .contact-grid,
+      .about-grid,
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+      .section {
+        padding: 2rem 1.3rem;
+      }
+      .hero {
+        padding: 2.5rem 1.3rem;
+        min-height: 300px;
+      }
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+    }
+    @media (max-width: 576px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+      .sidebar .brand {
+        font-size: 0.9rem;
+      }
+      .sidebar nav a {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.5rem;
+      }
+      .kv {
+        flex-wrap: wrap;
+      }
+      .kv .k {
+        width: 100%;
+      }
+      .product-card .card-img {
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div>
+        <div class="brand">LABO-TECH_<span>Yaoundé · Cameroun</span></div>
+        <nav>
+          <a href="#about">./about</a>
+          <a href="#services">./produits</a>
+          <a href="#testimonials">./temoignages</a>
+          <a href="#contact">./contact</a>
+        </nav>
+      </div>
+      <div class="foot">v2026.07<br />status: <span class="status-on">online</span></div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- HERO avec image de fond -->
+      <section class="hero section" id="top">
+        <div class="hero-bg"></div>
+        <div class="hero-content" data-aos="fade-up">
+          <span class="tag">$ fournisseur --spécialité laboratoire</span>
+          <h1>Produits chimiques et <span class="g">réactifs de laboratoire</span>, prêts à livrer.</h1>
+          <p>LABO-TECH fournit aux laboratoires, hôpitaux et centres de recherche du Cameroun des produits chimiques et réactifs de laboratoire de qualité contrôlée.</p>
+          <div class="term">
+            <div class="l1">// direction</div>
+            Mme MONTHY Adeline<span class="cursor"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section" id="about">
+        <div class="about-grid">
+          <div class="about-text" data-aos="fade-right">
+            <span class="tag">À propos</span>
+            <h2 class="stitle">Qui sommes-nous</h2>
+            <p><strong>LABO-TECH</strong> est une entreprise camerounaise spécialisée dans la fourniture de produits chimiques, réactifs et consommables pour laboratoires. Nous accompagnons les structures de recherche, les hôpitaux et les industries avec des produits de qualité, traçables et conformes aux normes.</p>
+            <p>Dirigée par <strong>Mme MONTHY Adeline</strong>, notre équipe met un point d'honneur à garantir la disponibilité, la fraîcheur et la fiabilité des produits livrés à travers le Cameroun.</p>
+          </div>
+          <div class="about-image" data-aos="fade-left" data-aos-delay="150">
+            <img src="./labotech2.jpg" alt="Laboratoire LABO-TECH" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES : grille de produits horizontale avec photos -->
+      <section class="section" id="services">
+        <h2 class="stitle" data-aos="fade-up">Catalogue produits</h2>
+        <p class="ssub" data-aos="fade-up">Une gamme complète de produits chimiques et réactifs pour vos analyses de laboratoire.</p>
+        <div class="product-grid" data-aos="fade-up">
+          <!-- PROD-01 -->
+          <div class="product-card">
+            <img class="card-img" src="./labotech3.jpg" alt="Réactifs de laboratoire" loading="lazy" />
+            <div class="card-body">
+              <span class="code">PROD-01</span>
+              <h4>Réactifs de laboratoire</h4>
+              <p>Réactifs pour analyses biologiques, chimiques et cliniques.</p>
+              <span class="status">Disponible</span>
+            </div>
+          </div>
+          <!-- PROD-02 -->
+          <div class="product-card">
+            <img class="card-img" src="./labotech4.jpg" alt="Produits chimiques" loading="lazy" />
+            <div class="card-body">
+              <span class="code">PROD-02</span>
+              <h4>Produits chimiques</h4>
+              <p>Produits chimiques de laboratoire à usage courant et spécialisé.</p>
+              <span class="status">Disponible</span>
+            </div>
+          </div>
+          <!-- PROD-03 -->
+          <div class="product-card">
+            <img class="card-img" src="./labotech5.jpg" alt="Consommables d'analyse" loading="lazy" />
+            <div class="card-body">
+              <span class="code">PROD-03</span>
+              <h4>Consommables d'analyse</h4>
+              <p>Verrerie, filtres, tubes et consommables associés.</p>
+              <span class="status">Disponible</span>
+            </div>
+          </div>
+          <!-- PROD-04 -->
+          <div class="product-card">
+            <img class="card-img" src="./labotech6.jpg" alt="Conservation au froid" loading="lazy" />
+            <div class="card-body">
+              <span class="code">PROD-04</span>
+              <h4>Conservation au froid</h4>
+              <p>Solutions de stockage à température contrôlée.</p>
+              <span class="status quote">Sur devis</span>
+            </div>
+          </div>
+          <!-- PROD-05 -->
+          <div class="product-card">
+            <img class="card-img" src="./labotech7.jpg" alt="Instruments de mesure" loading="lazy" />
+            <div class="card-body">
+              <span class="code">PROD-05</span>
+              <h4>Instruments de mesure</h4>
+              <p>Balances, pH-mètres et instruments de précision.</p>
+              <span class="status">Disponible</span>
+            </div>
+          </div>
+          <!-- PROD-06 -->
+          <div class="product-card">
+            <img class="card-img" src="./labotech8.jpg" alt="Contrôle qualité" loading="lazy" />
+            <div class="card-body">
+              <span class="code">PROD-06</span>
+              <h4>Contrôle qualité</h4>
+              <p>Produits accompagnés de fiches techniques et certificats.</p>
+              <span class="status">Disponible</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section" id="testimonials">
+        <h2 class="stitle" data-aos="fade-up">Témoignages</h2>
+        <p class="ssub" data-aos="fade-up">Ce que nos clients disent de nos produits et services.</p>
+        <div class="testimonial-grid">
+          <div class="testimonial-card" data-aos="fade-up">
+            <div class="quote">LABO-TECH nous livre des réactifs de haute pureté avec une régularité remarquable. Le suivi est rigoureux.</div>
+            <div class="author">
+              <div class="avatar"><img src="https://picsum.photos/seed/lt1/100/100" alt="Dr. Mvondo" /></div>
+              <div class="info"><div class="name">Dr. Mvondo</div><div class="role">Responsable labo d'analyse</div></div>
+            </div>
+          </div>
+          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="80">
+            <div class="quote">Une équipe réactive et des produits conformes à nos besoins. Nous avons gagné en fiabilité.</div>
+            <div class="author">
+              <div class="avatar"><img src="https://picsum.photos/seed/lt2/100/100" alt="Mme. Eboumbou" /></div>
+              <div class="info"><div class="name">Mme. Eboumbou</div><div class="role">Responsable Qualité, Industrie</div></div>
+            </div>
+          </div>
+          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="160">
+            <div class="quote">Leur catalogue est varié et les fiches techniques toujours à jour. Un partenaire de confiance.</div>
+            <div class="author">
+              <div class="avatar"><img src="https://picsum.photos/seed/lt3/100/100" alt="Pr. Njoya" /></div>
+              <div class="info"><div class="name">Pr. Njoya</div><div class="role">Chercheur, Université de Yaoundé</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <h2 class="stitle" data-aos="fade-up">Contact</h2>
+        <p class="ssub" data-aos="fade-up">Votre laboratoire a besoin de réactifs ou de produits chimiques fiables ? Écrivez-nous.</p>
+        <div class="contact-grid">
+          <div class="panel" data-aos="fade-up">
+            <div class="kv"><span class="k">Contact</span><span>Mme MONTHY Adeline</span></div>
+            <div class="kv"><span class="k">Téléphone</span><a href="tel:+237699774594">+237 699 774 594</a></div>
+            <div class="kv"><span class="k">Email</span><a href="mailto:adymonthi@gmail.com">adymonthi@gmail.com</a></div>
+            <div class="kv"><span class="k">Site web</span><a href="https://www.laboratoiretechnique.com" target="_blank">laboratoiretechnique.com</a></div>
+            <div class="kv"><span class="k">WhatsApp</span><a href="https://wa.me/237699774594" target="_blank">+237 699 774 594</a></div>
+            <div class="kv"><span class="k">Adresse</span><span>Yaoundé, Cameroun</span></div>
+          </div>
+          <div class="panel" data-aos="fade-up" data-aos-delay="120">
+            <form>
+              <div class="field"><label>nom</label><input type="text" placeholder="Votre nom" required /></div>
+              <div class="field"><label>email</label><input type="email" placeholder="vous@exemple.com" required /></div>
+              <div class="field"><label>message</label><textarea rows="4" placeholder="Votre demande..." required></textarea></div>
+              <button type="submit" class="btn-term">./envoyer</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer>© 2026 LABO-TECH — Yaoundé, Cameroun</footer>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js">
+  </script>
+  <script>
+    AOS.init({ once: true, duration: 500, easing: 'ease-out', offset: 30 });
+  </script>
+</body>
+</html>

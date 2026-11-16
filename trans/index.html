@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TRANS-PAC — Importation &amp; distribution d'équipements scientifiques et pharmaceutiques</title>
+
+    <!-- ===== FONTS ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- ===== BOOTSTRAP & OWL CAROUSEL ===== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+
+    <style>
+        /* ============================================================
+           ROOT & BASE (identique)
+           ============================================================ */
+        :root {
+            --ink: #0E1A24;
+            --deep: #16303F;
+            --steel: #5C7A8A;
+            --paper: #F1F3EF;
+            --paper-dim: #E4E8E2;
+            --amber: #C68B3D;
+            --amber-dim: #8C6329;
+            --line: rgba(14, 26, 36, 0.12);
+            --line-light: rgba(241, 243, 239, 0.16);
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            font-weight: 400;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, .display-font {
+            font-family: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Fira Code', monospace;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .text-amber { color: var(--amber); }
+        .text-amber-dim { color: var(--amber-dim); }
+        .bg-ink { background-color: var(--ink); }
+        .bg-deep { background-color: var(--deep); }
+        .border-amber { border-color: var(--amber) !important; }
+
+        ::selection {
+            background: var(--amber);
+            color: var(--ink);
+        }
+
+        .eyebrow {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--amber-dim);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+        .eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 1.5px;
+            background: var(--amber-dim);
+            display: inline-block;
+            opacity: 0.6;
+        }
+        .eyebrow-light {
+            color: var(--amber);
+        }
+        .eyebrow-light::before {
+            background: var(--amber);
+        }
+
+        /* ============================================================
+           NAVBAR
+           ============================================================ */
+        .navbar-custom {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.15rem 0;
+            background: transparent;
+            transition: background 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease;
+        }
+        .navbar-custom.scrolled {
+            background: rgba(14, 26, 36, 0.96);
+            backdrop-filter: blur(8px);
+            padding: 0.6rem 0;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+        }
+        .navbar-custom .brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--paper);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            letter-spacing: -0.02em;
+        }
+        .navbar-custom .brand .mark {
+            width: 12px;
+            height: 12px;
+            background: var(--amber);
+            border-radius: 2px;
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
+        .navbar-custom .brand .mono {
+            font-weight: 400;
+            opacity: 0.6;
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-links a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(241, 243, 239, 0.7);
+            position: relative;
+            padding: 0.3rem 0;
+            transition: color 0.25s ease;
+            text-decoration: none;
+        }
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--amber);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--paper);
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .btn-amber {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: var(--amber);
+            color: var(--ink);
+            border: 1.5px solid var(--amber);
+            padding: 0.55rem 1.4rem;
+            border-radius: 2px;
+            transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+            display: inline-block;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-amber:hover {
+            background: transparent;
+            color: var(--amber);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(198, 139, 61, 0.25);
+        }
+
+        .btn-outline-paper {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: transparent;
+            color: var(--paper);
+            border: 1.5px solid rgba(241, 243, 239, 0.35);
+            padding: 0.55rem 1.4rem;
+            border-radius: 2px;
+            transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+            display: inline-block;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-outline-paper:hover {
+            border-color: var(--paper);
+            background: rgba(241, 243, 239, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .navbar-toggler-custom {
+            background: transparent;
+            border: 1px solid rgba(241, 243, 239, 0.35);
+            width: 40px;
+            height: 40px;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .navbar-toggler-custom span {
+            display: block;
+            width: 18px;
+            height: 1.5px;
+            background: var(--paper);
+            position: relative;
+        }
+        .navbar-toggler-custom span::before,
+        .navbar-toggler-custom span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 18px;
+            height: 1.5px;
+            background: var(--paper);
+        }
+        .navbar-toggler-custom span::before {
+            top: -6px;
+        }
+        .navbar-toggler-custom span::after {
+            top: 6px;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: var(--ink);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 8vw;
+            gap: 1.6rem;
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
+        }
+        .mobile-menu.open {
+            transform: translateY(0);
+        }
+        .mobile-menu a {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--paper);
+            letter-spacing: -0.02em;
+            transition: color 0.2s ease;
+            text-decoration: none;
+        }
+        .mobile-menu a:hover {
+            color: var(--amber);
+        }
+        .mobile-menu a span {
+            color: var(--amber-dim);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-right: 1rem;
+            letter-spacing: 0.06em;
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background: radial-gradient(ellipse 80% 60% at 70% 20%, #1c3849 0%, var(--ink) 60%);
+            color: var(--paper);
+            display: flex;
+            align-items: center;
+            padding-top: 6rem;
+            overflow: hidden;
+        }
+        .hero-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--line-light) 1px, transparent 1px),
+                linear-gradient(90deg, var(--line-light) 1px, transparent 1px);
+            background-size: 56px 56px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.05) 85%);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .network-wrap {
+            position: relative;
+            height: 420px;
+        }
+        .network-svg {
+            width: 100%;
+            height: 100%;
+        }
+        .node-circle {
+            fill: var(--ink);
+            stroke: var(--amber);
+            stroke-width: 1.6;
+        }
+        .node-pulse {
+            fill: none;
+            stroke: var(--amber);
+            stroke-width: 1.2;
+            opacity: 0;
+        }
+        .node-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 500;
+            fill: rgba(241, 243, 239, 0.6);
+            letter-spacing: 0.08em;
+        }
+        .node-line {
+            stroke: rgba(198, 139, 61, 0.35);
+            stroke-width: 1.2;
+        }
+
+        @keyframes pulseRing {
+            0% { r: 14; opacity: 0.7; }
+            100% { r: 38; opacity: 0; }
+        }
+        .node-pulse {
+            animation: pulseRing 3.2s ease-out infinite;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 1.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(241, 243, 239, 0.4);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+        .scroll-hint .line {
+            width: 1px;
+            height: 34px;
+            background: linear-gradient(180deg, var(--amber), transparent);
+            animation: scrollMove 1.8s ease-in-out infinite;
+        }
+        @keyframes scrollMove {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.5); opacity: 0.4; }
+        }
+
+        /* ============================================================
+           CARDS (Service & Testimonial)
+           ============================================================ */
+        .service-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 1.5rem 1.2rem;
+            text-align: center;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(14, 26, 36, 0.08);
+            border-color: var(--amber);
+        }
+        .service-icon {
+            font-size: 2.2rem;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+        .service-card .service-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--amber-dim);
+            letter-spacing: 0.06em;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .service-card h5 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        .service-card p {
+            font-size: 0.8rem;
+            color: var(--steel);
+            margin: 0;
+        }
+
+        /* ============================================================
+           PHOTO FRAMES
+           ============================================================ */
+        .photo-frame {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(35%) sepia(8%) saturate(115%);
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), filter 0.4s ease;
+        }
+        .photo-frame:hover img {
+            transform: scale(1.04);
+            filter: grayscale(10%) sepia(4%) saturate(120%);
+        }
+        .photo-frame::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(14,26,36,0) 60%, rgba(14,26,36,0.35) 100%);
+            pointer-events: none;
+        }
+        .photo-tag {
+            position: absolute;
+            top: 0.9rem;
+            left: 0.9rem;
+            background: rgba(14, 26, 36, 0.82);
+            color: var(--paper);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.65rem;
+            border-radius: 2px;
+            z-index: 2;
+        }
+        .photo-caption {
+            position: absolute;
+            bottom: 0.9rem;
+            left: 0.9rem;
+            right: 0.9rem;
+            color: var(--paper);
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 2;
+        }
+        .about-photo { height: 280px; }
+        .contact-photo { height: 190px; margin-bottom: 1.5rem; }
+
+        /* ============================================================
+           ABOUT / TESTIMONIALS / CONTACT
+           ============================================================ */
+        .about-mission-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 1.8rem 1.5rem;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .about-mission-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(14, 26, 36, 0.06);
+        }
+        .about-mission-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .about-mission-card h5 {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .about-mission-card p {
+            font-size: 0.9rem;
+            color: var(--steel);
+            margin: 0;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 1.8rem 1.5rem;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(14, 26, 36, 0.06);
+        }
+        .testimonial-card .quote-icon {
+            font-size: 2.5rem;
+            line-height: 1;
+            color: var(--amber-dim);
+            opacity: 0.3;
+            margin-bottom: 0.5rem;
+        }
+        .testimonial-card blockquote {
+            font-size: 0.95rem;
+            font-style: italic;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .testimonial-card .author .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--deep);
+            color: var(--paper);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .testimonial-card .author .info .name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .testimonial-card .author .info .title {
+            font-size: 0.8rem;
+            color: var(--steel);
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .contact-info-item .icon {
+            font-size: 1.2rem;
+            color: var(--amber);
+            width: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        .contact-info-item .content {
+            font-size: 0.95rem;
+            color: var(--steel);
+        }
+        .contact-info-item .content strong {
+            color: var(--ink);
+        }
+
+        .map-placeholder {
+            background: var(--paper-dim);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            height: 200px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--steel);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+
+        /* ============================================================
+           PARTNER CARDS (for Owl Carousel)
+           ============================================================ */
+        .partner-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            margin: 0.5rem;
+        }
+        .partner-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(14, 26, 36, 0.08);
+            border-color: var(--amber);
+        }
+        .partner-card .partner-logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--deep);
+            color: var(--paper);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin: 0 auto 0.8rem;
+        }
+        .partner-card h6 {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+        .partner-card .partner-sector {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--steel);
+        }
+
+        /* ============================================================
+           CAROUSEL CUSTOMISATION
+           ============================================================ */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: var(--ink);
+            border-radius: 50%;
+            padding: 1.5rem;
+            background-size: 50% 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--line);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .carousel-control-prev:hover .carousel-control-prev-icon,
+        .carousel-control-next:hover .carousel-control-next-icon {
+            background-color: var(--amber);
+            border-color: var(--amber);
+        }
+        .carousel-indicators [data-bs-target] {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid var(--steel);
+            background: transparent;
+            opacity: 0.5;
+            transition: opacity 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+        }
+        .carousel-indicators .active {
+            background: var(--amber);
+            border-color: var(--amber);
+            opacity: 1;
+        }
+        .carousel-indicators {
+            bottom: -3rem;
+        }
+        .carousel-item .row {
+            min-height: 320px;
+        }
+
+        /* ============================================================
+           OWL CAROUSEL OVERRIDES
+           ============================================================ */
+        .owl-theme .owl-dots .owl-dot span {
+            background: var(--steel);
+            opacity: 0.5;
+        }
+        .owl-theme .owl-dots .owl-dot.active span {
+            background: var(--amber);
+            opacity: 1;
+        }
+        .owl-theme .owl-nav [class*='owl-'] {
+            background: var(--ink);
+            color: var(--paper);
+            border-radius: 50%;
+            padding: 0.5rem 0.8rem;
+            font-size: 1.2rem;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .owl-theme .owl-nav [class*='owl-']:hover {
+            background: var(--amber);
+            color: var(--ink);
+        }
+        .owl-carousel .owl-item {
+            padding: 0.5rem 0;
+        }
+
+        /* ============================================================
+           REVEAL
+           ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-stagger.visible .stagger-child {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger-child {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1), transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* ============================================================
+           BACK TO TOP
+           ============================================================ */
+        #backToTop {
+            position: fixed;
+            bottom: 1.8rem;
+            right: 1.8rem;
+            width: 44px;
+            height: 44px;
+            background: var(--ink);
+            color: var(--paper);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(12px);
+            transition: opacity 0.35s ease, transform 0.35s ease, background 0.25s ease, color 0.25s ease;
+            z-index: 900;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        #backToTop.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        #backToTop:hover {
+            background: var(--amber);
+            color: var(--ink);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 991px) {
+            .nav-links { display: none; }
+            .network-wrap { height: 280px; margin-top: 2rem; }
+            .carousel-control-prev, .carousel-control-next { width: 2rem; }
+            .carousel-control-prev-icon, .carousel-control-next-icon { padding: 1rem; }
+        }
+        @media (max-width: 576px) {
+            .mobile-menu a { font-size: 1.6rem; }
+            .carousel-control-prev, .carousel-control-next { width: 1.5rem; }
+            .carousel-control-prev-icon, .carousel-control-next-icon { padding: 0.8rem; }
+            .carousel-item .row { min-height: auto; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar-custom" id="mainNav">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="#top" class="brand">
+                <span class="mark"></span>
+                TRANS-PAC
+                <!-- <span class="mono" style="font-weight:400;opacity:0.6;font-size:0.8rem;">IMPORT · DISTRIBUTION</span> -->
+            </a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link-item">À propos</a>
+                <a href="#services" class="nav-link-item">Services</a>
+                <a href="#partenaires" class="nav-link-item">partenaires</a>
+                <a href="#temoignages" class="nav-link-item">Témoignages</a>
+                <a href="#contact" class="nav-link-item">Contact</a>
+                <a href="#contact" class="btn-amber">Demander un devis</a>
+            </div>
+            <button class="navbar-toggler-custom d-lg-none" id="menuToggle" aria-label="Ouvrir le menu">
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about"><span>01</span>À propos</a>
+        <a href="#services"><span>02</span>partenaires</a>
+        <a href="#partenaires"><span>03</span>Clients</a>
+        <a href="#temoignages"><span>04</span>Témoignages</a>
+        <a href="#contact"><span>05</span>Contact</a>
+    </div>
+
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
+    <section class="hero" id="top">
+        <div class="hero-grid-bg"></div>
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <span class="kicker">Fournisseur de confiance — Cameroun</span>
+                    <h1 class="display-3 fw-bold lh-1 mb-3">Importation &amp; distribution d'équipements <em class="text-amber fst-italic">scientifiques et pharmaceutiques</em></h1>
+                    <p class="lead fs-5 text-white-50 mb-4">TRANS-PAC vous accompagne dans l'acquisition de matériels de laboratoire, d'instruments de mesure, de machines pharmaceutiques et de consommables de haute qualité.</p>
+                    <!-- <div class="d-flex flex-wrap gap-3 mb-4">
+                        <a href="#services" class="btn-amber">Découvrir nos services</a>
+                        <a href="#contact" class="btn-outline-paper">Nous contacter</a>
+                    </div> -->
+                    <div class="d-flex flex-wrap gap-4 mono small text-white-50">
+                        <div class="border-start ps-3 border-white-25">Basé à<br />Yaoundé, Cameroun</div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="network-wrap">
+                        <svg class="network-svg" viewBox="0 0 460 420" xmlns="http://www.w3.org/2000/svg">
+                            <line class="node-line" x1="230" y1="200" x2="90" y2="80" />
+                            <line class="node-line" x1="230" y1="200" x2="360" y2="60" />
+                            <line class="node-line" x1="230" y1="200" x2="70" y2="280" />
+                            <line class="node-line" x1="230" y1="200" x2="380" y2="260" />
+                            <line class="node-line" x1="230" y1="200" x2="230" y2="370" />
+                            <line class="node-line" x1="90" y1="80" x2="360" y2="60" stroke-dasharray="2 4" />
+                            <line class="node-line" x1="70" y1="280" x2="230" y2="370" stroke-dasharray="2 4" />
+                            <circle class="node-pulse" cx="230" cy="200" r="14" style="animation-delay:0s" />
+                            <circle class="node-circle" cx="230" cy="200" r="16" />
+                            <text class="node-label" x="230" y="204" text-anchor="middle">TRANS-PAC</text>
+                            <circle class="node-pulse" cx="90" cy="80" r="10" style="animation-delay:.5s" />
+                            <circle class="node-circle" cx="90" cy="80" r="9" />
+                            <text class="node-label" x="90" y="60" text-anchor="middle">LABO</text>
+                            <circle class="node-pulse" cx="360" cy="60" r="10" style="animation-delay:1s" />
+                            <circle class="node-circle" cx="360" cy="60" r="9" />
+                            <text class="node-label" x="360" y="40" text-anchor="middle">PHARMA</text>
+                            <circle class="node-pulse" cx="70" cy="280" r="10" style="animation-delay:1.5s" />
+                            <circle class="node-circle" cx="70" cy="280" r="9" />
+                            <text class="node-label" x="70" y="305" text-anchor="middle">QUALITÉ</text>
+                            <circle class="node-pulse" cx="380" cy="260" r="10" style="animation-delay:2s" />
+                            <circle class="node-circle" cx="380" cy="260" r="9" />
+                            <text class="node-label" x="380" y="285" text-anchor="middle">TECHNOLOGIE</text>
+                            <circle class="node-pulse" cx="230" cy="370" r="10" style="animation-delay:2.5s" />
+                            <circle class="node-circle" cx="230" cy="370" r="9" />
+                            <text class="node-label" x="230" y="395" text-anchor="middle">INNOVATION</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-hint"><span>SCROLL</span><span class="line"></span></div>
+    </section>
+
+    <!-- ============================================================
+    STATS
+    ============================================================ -->
+    <!-- <section class="bg-deep text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-6 col-lg-3">
+                    <div class="border-start border-white-10 ps-3">
+                        <span class="stat-number display-3 fw-bold d-block lh-1" data-count="18">0<span class="text-amber">+</span></span>
+                        <span class="mono small text-white-50 text-uppercase tracking-wide">Années d'expérience</span>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="border-start border-white-10 ps-3">
+                        <span class="stat-number display-3 fw-bold d-block lh-1" data-count="50">0<span class="text-amber">+</span></span>
+                        <span class="mono small text-white-50 text-uppercase tracking-wide">Clients actifs</span>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="border-start border-white-10 ps-3">
+                        <span class="stat-number display-3 fw-bold d-block lh-1" data-count="10">0</span>
+                        <span class="mono small text-white-50 text-uppercase tracking-wide">Régions couvertes</span>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="border-start border-white-10 ps-3">
+                        <span class="stat-number display-3 fw-bold d-block lh-1" data-count="200">0<span class="text-amber">+</span></span>
+                        <span class="mono small text-white-50 text-uppercase tracking-wide">Références projets</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- ============================================================
+    ABOUT
+    ============================================================ -->
+    <section class="py-5 py-md-6" id="about">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 reveal">
+                    <div class="eyebrow">Qui sommes-nous ?</div>
+                    <h2 class="display-5 fw-bold mb-3">TRANS-PAC, votre partenaire en équipements scientifiques</h2>
+                    <p class="fs-6 text-secondary mb-3">Fondée en 2008, TRANS-PAC est une entreprise camerounaise spécialisée dans l'importation et la distribution de matériels de laboratoire, d'instrumentation scientifique et d'équipements pour l'industrie pharmaceutique.</p>
+                    <p class="fs-6 text-secondary mb-4">Sous la direction de <strong>M. FOZEU PIERRE MARIE</strong>, nous mettons notre expertise au service des laboratoires publics et privés, des hôpitaux, des universités et des industries, en leur fournissant des solutions fiables et conformes aux normes internationales.</p>
+                </div>
+                <div class="col-lg-6 reveal">
+                    <div class="photo-frame about-photo mb-3">
+                        <span class="photo-caption">Entrepôt &amp; contrôle qualité — Yaoundé</span>
+                        <img src="./image5.jpg" alt="Entrepôt d'équipements scientifiques TRANS-PAC" loading="lazy">
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="about-mission-card">
+                                <h5>Mission</h5>
+                                <p>Fournir aux acteurs de la santé et de la recherche des équipements de haute technologie, avec un service personnalisé et une réactivité sans faille.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="about-mission-card">
+                                <h5>Vision</h5>
+                                <p>Devenir le fournisseur de référence en Afrique centrale pour l'instrumentation scientifique et pharmaceutique.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="about-mission-card">
+                                <h5>Valeurs</h5>
+                                <p>Excellence, intégrité, proximité et innovation au service de la santé et de la recherche.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SERVICES — CAROUSEL (6 per slide)
+    ============================================================ -->
+    <section class="py-5 py-md-6 bg-light" id="services">
+        <div class="container">
+            <div class="row align-items-end g-4 mb-4 reveal">
+                <div class="col-lg-8">
+                    <div class="eyebrow">Nos prestations</div>
+                    <h2 class="display-5 fw-bold mb-2">Services proposés</h2>
+                    <p class="text-secondary fs-6 mb-0" style="max-width:480px;">Des solutions complètes pour vos besoins en équipements de laboratoire, pharmaceutiques et de contrôle.</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="photo-frame" style="height:140px;">
+                        <!-- <span class="photo-tag">FIG.03</span> -->
+                        <img src="./image1.jpg" alt="Instruments de laboratoire" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators" id="serviceIndicators">
+                    <!-- Generated by JS -->
+                </div>
+                <div class="carousel-inner" id="serviceCarouselInner">
+                    <!-- Generated by JS -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PARTENAIRES / CLIENTS — OWL CAROUSEL
+    ============================================================ -->
+    <section class="py-5 py-md-6" id="partenaires">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4 reveal">
+                <div>
+                    <div class="eyebrow">Nos partenaires</div>
+                    <h2 class="display-5 fw-bold mb-0">Ils nous font confiance</h2>
+                </div>
+            </div>
+
+            <div class="owl-carousel owl-theme" id="clientCarousel">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    TEMOIGNAGES
+    ============================================================ -->
+    <section class="py-5 py-md-6 bg-light" id="temoignages">
+        <div class="container">
+            <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4 reveal">
+                <div>
+                    <div class="eyebrow">Retours d'expérience</div>
+                    <h2 class="display-5 fw-bold mb-0">Ce que nos clients disent</h2>
+                </div>
+                <p class="text-secondary fs-6 mb-0" style="max-width:360px;">Des avis sincères sur la qualité de nos prestations.</p>
+            </div>
+
+            <div class="row g-4 reveal-stagger reveal" id="testimonialGrid">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CONTACT
+    ============================================================ -->
+    <section class="py-5 py-md-6" id="contact">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-7 reveal">
+                    <div class="eyebrow">Écrire à TRANS-PAC</div>
+                    <h2 class="display-5 fw-bold mb-3">Demandez un devis ou des informations</h2>
+                    <p class="text-secondary mb-4">Nous répondons à toutes vos demandes dans les plus brefs délais.</p>
+
+                    <form action="#" method="POST">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label fw-semibold small text-uppercase mono">Nom complet</label>
+                                <input type="text" class="form-control border-2" id="name" placeholder="Votre nom" required style="border-color:var(--line); background:#fff;" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label fw-semibold small text-uppercase mono">Adresse email</label>
+                                <input type="email" class="form-control border-2" id="email" placeholder="vous@exemple.com" required style="border-color:var(--line); background:#fff;" />
+                            </div>
+                            <div class="col-12">
+                                <label for="subject" class="form-label fw-semibold small text-uppercase mono">Sujet</label>
+                                <input type="text" class="form-control border-2" id="subject" placeholder="Objet de votre message" style="border-color:var(--line); background:#fff;" />
+                            </div>
+                            <div class="col-12">
+                                <label for="message" class="form-label fw-semibold small text-uppercase mono">Message</label>
+                                <textarea class="form-control border-2" id="message" rows="5" placeholder="Votre message..." required style="border-color:var(--line); background:#fff;"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn-amber">Envoyer le message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-5 reveal">
+                    <div class="bg-white p-4 p-md-5 rounded-3 border" style="border-color:var(--line) !important; height:100%;">
+                        <div class="photo-frame contact-photo">
+                            <!-- <span class="photo-tag">FIG.02</span> -->
+                            <span class="photo-caption">Équipe technique TRANS-PAC</span>
+                            <img src="./image3.jpg" alt="Équipe technique TRANS-PAC" loading="lazy">
+                        </div>
+                        <h5 class="fw-bold mb-4">Coordonnées</h5>
+                        <div class="contact-info-item">
+                            <span class="icon">📍</span>
+                            <div class="content">
+                                <strong>Adresse  BP : </strong>
+                                 6367, Yaoundé – Cameroun
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <span class="icon">📞</span>
+                            <div class="content">
+                                <strong>Téléphone : </strong>
+                                +237 677 140 604<br />
+                                <strong>Téléphone : </strong>
+                                +237 699 961 614
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <span class="icon">✉️</span>
+                            <div class="content">
+                                <strong>Email : </strong>
+                                fozeupierre.m@gmail.com<br />
+                                <strong>Email : </strong>   
+                                transpac2002@gmail.com
+                            </div>
+                        </div>
+                        <!-- <hr style="border-color:var(--line);" />
+                        <div class="map-placeholder">
+                            <span class="mono">Carte interactive — Yaoundé, Cameroun</span>
+                        </div>
+                        <div class="mt-3">
+                            <span class="mono small text-secondary">Retrouvez-nous sur</span>
+                            <div class="d-flex gap-3 mt-2">
+                                <a href="#" class="text-amber text-decoration-none fw-bold">LinkedIn</a>
+                                <a href="#" class="text-amber text-decoration-none fw-bold">WhatsApp</a>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CTA CONTACT
+    ============================================================ -->
+    <section class="bg-ink text-white py-5 py-md-6 position-relative overflow-hidden" id="adhesion">
+        <div class="position-absolute top-0 end-0 w-50 h-100" style="background:radial-gradient(circle at 70% 30%, rgba(198,139,61,0.15), transparent 70%); pointer-events:none;"></div>
+        <div class="container position-relative">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8 reveal">
+                    <div class="eyebrow eyebrow-light">Un projet ? Un besoin ?</div>
+                    <h2 class="display-5 fw-bold">Contactez-nous dès aujourd'hui</h2>
+                    <p class="fs-5 text-white-50">Nous sommes à votre écoute pour vous proposer des solutions adaptées à vos besoins en équipements scientifiques et pharmaceutiques.</p>
+                </div>
+                <div class="col-lg-4 reveal">
+                    <div class="d-flex flex-column gap-3">
+                        <a href="#contact" class="btn-outline-paper text-center">Nous contacter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="bg-ink text-white-50 py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="text-white font-display fw-semibold">TRANS-PAC</h5>
+                    <p style="max-width:280px;">Importation et distribution d'équipements scientifiques, de laboratoire et pharmaceutiques au Cameroun et en Afrique centrale.</p>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h6 class="text-white fw-semibold">Navigation</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="#about" class="text-white-50 text-decoration-none hover-amber">À propos</a></li>
+                        <li><a href="#services" class="text-white-50 text-decoration-none hover-amber">Services</a></li>
+                        <li><a href="#partenaires" class="text-white-50 text-decoration-none hover-amber">Clients</a></li>
+                        <li><a href="#temoignages" class="text-white-50 text-decoration-none hover-amber">Témoignages</a></li>
+                        <li><a href="#contact" class="text-white-50 text-decoration-none hover-amber">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6 class="text-white fw-semibold">Suivez-nous</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="#" class="text-white-50 text-decoration-none hover-amber">LinkedIn</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none hover-amber">WhatsApp</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="text-white fw-semibold">Contact</h6>
+                    <ul class="list-unstyled small">
+                        <li>BP 6367, Yaoundé, Cameroun</li>
+                        <li>+237 677 140 604</li>
+                        <li>transpac2002@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-top border-white-10 mt-4 pt-3 d-flex flex-wrap justify-content-between gap-2 mono small text-white-50">
+                <span>© 2026 TRANS-PAC — TOUS DROITS RÉSERVÉS</span>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" aria-label="Retour en haut">↑</button>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+
+    <script>
+        /* ============================================================
+           DATA (services & clients)
+           ============================================================ */
+        const servicesData = [
+            { code: "SERV-01", name: "Instruments analytiques", desc: "Spectromètres, chromatographes, pH-mètres, balances de précision." },
+            { code: "SERV-02", name: "Diagnostics et tests rapides", desc: "Kits de diagnostic, tests ELISA, réactifs pour laboratoires." },
+            { code: "SERV-03", name: "Équipements environnementaux", desc: "Instruments de mesure de la qualité de l'air, de l'eau et des sols." },
+            { code: "SERV-04", name: "Conservation et climatisation", desc: "Chambres d'humidité, congélateurs, réfrigérateurs de laboratoire." },
+            { code: "SERV-05", name: "Réactifs et consommables", desc: "Produits chimiques, solvants, verrerie, filtres, consommables courants." },
+            { code: "SERV-06", name: "Automatisation de laboratoire", desc: "Logiciels LIMS, systèmes d'automatisation, robots de laboratoire." },
+            { code: "SERV-07", name: "Équipements pharmaceutiques", desc: "Lignes de production, machines de conditionnement, matériel GMP." },
+            { code: "SERV-08", name: "Salles blanches et contrôle", desc: "Équipements pour environnements contrôlés, surveillance qualité." },
+            { code: "SERV-09", name: "Maintenance et étalonnage", desc: "Services après-vente, maintenance préventive, étalonnage d'instruments." },
+            { code: "SERV-10", name: "Conseil et formation", desc: "Accompagnement technique, formation à l'utilisation des équipements." },
+        ];
+
+        const clientsData = [
+            { name: "CHU de Yaoundé", sector: "Hôpital public" },
+            { name: "Labo Cameroun", sector: "Laboratoire privé" },
+            { name: "Institut Pasteur", sector: "Recherche" },
+            { name: "Université de Yaoundé I", sector: "Enseignement supérieur" },
+            { name: "Pharma Industrie", sector: "Industrie pharmaceutique" },
+            { name: "Centre IRAD", sector: "Recherche agronomique" },
+            { name: "Hôpital Général Douala", sector: "Hôpital public" },
+            { name: "BioClinique", sector: "Laboratoire d'analyses" },
+        ];
+
+        const testimonialsData = [{
+            quote: "TRANS-PAC nous a fourni un spectromètre de dernière génération avec une installation rapide et une formation complète. Un partenaire fiable.",
+            name: "Dr. Atangana",
+            title: "Directeur du CHU de Yaoundé",
+            initials: "DA"
+        }, {
+            quote: "Leur réactivité et leur conseil technique sont précieux. Nous avons pu équiper notre nouveau laboratoire en moins de deux semaines.",
+            name: "Mme Essama",
+            title: "Responsable Qualité, Labo Cameroun",
+            initials: "ME"
+        }, {
+            quote: "Une entreprise sérieuse qui tient ses engagements. Les équipements sont conformes aux normes et le service après-vente est à la hauteur.",
+            name: "Pr. Nkoum",
+            title: "Chercheur, Université de Yaoundé I",
+            initials: "PN"
+        }, {
+            quote: "Grâce à TRANS-PAC, nous avons modernisé notre ligne de production pharmaceutique. Leur expertise nous a fait gagner en efficacité.",
+            name: "M. Mbozo'o",
+            title: "CEO, Pharma Industrie",
+            initials: "MM"
+        }];
+
+        /* ============================================================
+           CAROUSEL BUILDER (Bootstrap)
+           ============================================================ */
+        function buildCarouselItems(data, containerId, indicatorId, renderCardFn) {
+            const container = document.getElementById(containerId);
+            const indicatorContainer = document.getElementById(indicatorId);
+            if (!container) return;
+
+            container.innerHTML = '';
+            indicatorContainer.innerHTML = '';
+
+            const itemsPerSlide = 6;
+            const totalSlides = Math.ceil(data.length / itemsPerSlide);
+
+            for (let i = 0; i < totalSlides; i++) {
+                const indicator = document.createElement('button');
+                indicator.setAttribute('type', 'button');
+                indicator.setAttribute('data-bs-target', `#${containerId.replace('Inner', '')}`);
+                indicator.setAttribute('data-bs-slide-to', i);
+                if (i === 0) indicator.classList.add('active');
+                indicator.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+                indicator.setAttribute('aria-label', `Slide ${i + 1}`);
+                indicatorContainer.appendChild(indicator);
+
+                const start = i * itemsPerSlide;
+                const slideData = data.slice(start, start + itemsPerSlide);
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = `carousel-item${i === 0 ? ' active' : ''}`;
+                itemDiv.setAttribute('data-bs-interval', '5000');
+
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'row g-4';
+
+                slideData.forEach((item, idx) => {
+                    const colDiv = document.createElement('div');
+                    colDiv.className = 'col-6 col-md-4 col-lg-4';
+                    colDiv.innerHTML = renderCardFn(item, idx);
+                    rowDiv.appendChild(colDiv);
+                });
+
+                itemDiv.appendChild(rowDiv);
+                container.appendChild(itemDiv);
+            }
+        }
+
+        /* ============================================================
+           CARD RENDERERS
+           ============================================================ */
+        const serviceEmojis = {
+            "SERV-01": "🔬",
+            "SERV-02": "🧪",
+            "SERV-03": "🌱",
+            "SERV-04": "❄️",
+            "SERV-05": "🧫",
+            "SERV-06": "🤖",
+            "SERV-07": "💊",
+            "SERV-08": "🌡️",
+            "SERV-09": "🔧",
+            "SERV-10": "📚"
+        };
+
+        function renderServiceCard(item) {
+            const emoji = serviceEmojis[item.code] || "📌";
+            const shortDesc = item.desc.split(" ").slice(0, 8).join(" ") + (item.desc.split(" ").length > 8 ? "…" : "");
+            return `
+                <div class="service-card">
+                    <span class="service-code">${item.code}</span>
+                    <h5>${item.name}</h5>
+                    <p>${shortDesc}</p>
+                </div>
+            `;
+        }
+
+        /* ============================================================
+           RENDER TESTIMONIALS
+           ============================================================ */
+        function renderTestimonials() {
+            const grid = document.getElementById('testimonialGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            testimonialsData.forEach((t, i) => {
+                const col = document.createElement('div');
+                col.className = 'col-md-6 col-lg-3 stagger-child';
+                col.style.transitionDelay = (i * 0.05) + 's';
+                col.innerHTML = `
+                    <div class="testimonial-card">
+                        <div class="quote-icon">“</div>
+                        <blockquote>${t.quote}</blockquote>
+                        <div class="author">
+                            <div class="avatar">${t.initials}</div>
+                            <div class="info">
+                                <div class="name">${t.name}</div>
+                                <div class="title">${t.title}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(col);
+            });
+            requestAnimationFrame(() => {
+                grid.querySelectorAll('.stagger-child').forEach(el => el.classList.add('visible'));
+            });
+        }
+        renderTestimonials();
+
+        /* ============================================================
+           INIT CAROUSELS (Bootstrap)
+           ============================================================ */
+        buildCarouselItems(
+            servicesData,
+            'serviceCarouselInner',
+            'serviceIndicators',
+            renderServiceCard
+        );
+
+        /* ============================================================
+           CLIENT CAROUSEL (Owl Carousel)
+           ============================================================ */
+        function initClientCarousel() {
+            const container = document.getElementById('clientCarousel');
+            if (!container) return;
+            container.innerHTML = '';
+
+            clientsData.forEach((client) => {
+                const initials = client.name.split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase();
+                const item = document.createElement('div');
+                item.className = 'item';
+                item.innerHTML = `
+                    <div class="partner-card">
+                        <div class="partner-logo">${initials}</div>
+                        <h6>${client.name}</h6>
+                        <div class="partner-sector">${client.sector}</div>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+
+            $(container).owlCarousel({
+                loop: true,
+                margin: 20,
+                nav: true,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 4000,
+                responsive: {
+                    0: { items: 1 },
+                    576: { items: 2 },
+                    768: { items: 3 },
+                    992: { items: 3 },
+                    1200: { items: 3 }
+                },
+                navText: ['‹', '›']
+            });
+        }
+
+        $(document).ready(function() {
+            initClientCarousel();
+        });
+
+        /* ============================================================
+           INTERACTIONS (scroll, spy, reveal, counters, back to top)
+           ============================================================ */
+        const nav = document.getElementById("mainNav");
+        window.addEventListener("scroll", () => {
+            nav.classList.toggle("scrolled", window.scrollY > 60);
+            document.getElementById("backToTop").classList.toggle("show", window.scrollY > 700);
+        });
+
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+        menuToggle.addEventListener("click", () => mobileMenu.classList.toggle("open"));
+        mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => mobileMenu.classList.remove("open")));
+
+        const sections = ["about", "services", "partenaires", "temoignages", "contact"].map(id => document.getElementById(id));
+        const navItems = document.querySelectorAll(".nav-link-item");
+        const spyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navItems.forEach(a => a.classList.remove("active"));
+                    const match = document.querySelector(`.nav-link-item[href="#${entry.target.id}"]`);
+                    if (match) match.classList.add("active");
+                }
+            });
+        }, { rootMargin: "-45% 0px -50% 0px" });
+        sections.forEach(s => s && spyObserver.observe(s));
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+        const counters = document.querySelectorAll(".stat-number");
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.count, 10);
+                    let current = 0;
+                    const duration = 1200;
+                    const start = performance.now();
+
+                    function tick(now) {
+                        const progress = Math.min((now - start) / duration, 1);
+                        current = Math.floor(progress * target);
+                        el.childNodes[0].nodeValue = current;
+                        if (progress < 1) requestAnimationFrame(tick);
+                        else el.childNodes[0].nodeValue = target;
+                    }
+                    requestAnimationFrame(tick);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        counters.forEach(c => counterObserver.observe(c));
+
+        document.getElementById("backToTop").addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+</body>
+</html>

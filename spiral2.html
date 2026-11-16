@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STÉ SIPRAL SARL — Laboratoire d'analyses médicales et commercialisation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <style>
+        :root{ --ink:#111111; --paper:#FCFBF7; --red:#E14B3D; --blue:#2A5C8A; --mustard:#E8B23D; --steel:#5c5850; }
+        *{box-sizing:border-box;}
+        body{margin:0; background:var(--paper); color:var(--ink); font-family:'Barlow',sans-serif; -webkit-font-smoothing:antialiased; line-height:1.7;}
+        h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:0.01em; margin:0;}
+        a{color:inherit; text-decoration:none;}
+        .wrap{max-width:1160px; margin:0 auto; padding:0 1.5rem;}
+
+        header{border-bottom:4px solid var(--ink); padding:1.2rem 0;}
+        .nav-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;}
+        .brand{display:flex; align-items:center; gap:0.7rem; font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.4rem; text-transform:uppercase;}
+        .brand .b-dot{width:16px; height:16px; background:var(--red); border-radius:50%;}
+        .nav-links{display:flex; gap:1.7rem; font-family:'Barlow Condensed',sans-serif; font-size:0.9rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em;}
+        .nav-links a:hover{color:var(--red);}
+        .pill-btn{background:var(--ink); color:#fff; padding:0.55rem 1.3rem; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; text-transform:uppercase;}
+        .pill-btn:hover{background:var(--red);}
+
+        .hero{padding:0; position:relative; border-bottom:4px solid var(--ink);}
+        .hero-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:0; align-items:stretch;}
+        .hero-left{padding:2.8rem 1.5rem 3rem;}
+        .kicker{display:inline-block; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.06em; background:var(--mustard); padding:0.35rem 0.9rem; margin-bottom:1.3rem;}
+        .hero h1{font-size:3.6rem; line-height:0.98; margin-bottom:1.3rem;}
+        .hero h1 .r{color:var(--red);}
+        .hero p{font-family:'Barlow',sans-serif; text-transform:none; color:var(--steel); font-size:1.08rem; max-width:44ch; margin-bottom:1.8rem; font-weight:400;}
+        .btn-row{display:flex; gap:1rem; flex-wrap:wrap;}
+        .btn-solid{background:var(--red); color:#fff; padding:0.85rem 1.8rem; font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; font-size:0.95rem; border:3px solid var(--ink);}
+        .btn-solid:hover{background:var(--ink);}
+        .btn-line{border:3px solid var(--ink); padding:0.8rem 1.7rem; font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; font-size:0.95rem;}
+        .hero-right{border-left:4px solid var(--ink); display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; min-height:320px;}
+        .hero-right img{width:100%; height:100%; object-fit:cover; display:block;}
+
+        .section-pad{padding:3.5rem 0; border-bottom:4px solid var(--ink);}
+        .eyebrow{display:inline-block; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:#fff; background:var(--ink); padding:0.3rem 0.8rem; margin-bottom:1rem;}
+        h2.stitle{font-size:2.4rem; margin-bottom:0.6rem;}
+        .ssub{font-family:'Barlow',sans-serif; text-transform:none; color:var(--steel); max-width:62ch; margin-bottom:2.2rem; font-weight:400; font-size:1rem;}
+
+        .pillars-grid{display:grid; grid-template-columns:1fr 1fr; gap:0; border:3px solid var(--ink);}
+        .pillar{padding:2.2rem; border-right:3px solid var(--ink); position:relative;}
+        .pillar:last-child{border-right:none;}
+        .pillar .shape-img{width: 100px; height:100px; border-radius:50%; overflow:hidden; margin-bottom:1rem; border:3px solid var(--red);}
+        .pillar .shape-img img{width:100%; height:100%; object-fit:cover; display:block;}
+        .pillar h3{font-size:1.6rem; margin-bottom:0.6rem;}
+        .pillar p{font-family:'Barlow',sans-serif; text-transform:none; color:var(--steel); font-size:0.95rem; margin:0; font-weight:400;}
+
+        .process-row{display:flex; gap:0; border:3px solid var(--ink); margin-top:0.5rem;}
+        .p-step{flex:1; padding:1.8rem 1.2rem; border-right:3px solid var(--ink); text-align:center;}
+        .p-step:last-child{border-right:none;}
+        .p-step .step-img{width:100px; height:100px; border-radius:50%; overflow:hidden; margin:0 auto 0.9rem; border:3px solid var(--mustard);}
+        .p-step .step-img img{width:100%; height:100%; object-fit:cover; display:block;}
+        .p-step h5{font-size:1.05rem; margin-bottom:0.4rem;}
+        .p-step p{font-family:'Barlow',sans-serif; text-transform:none; font-size:0.82rem; color:var(--steel); margin:0; font-weight:400;}
+
+        .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:0; border:3px solid var(--ink);}
+        .about-text{padding:2.2rem; border-right:3px solid var(--ink);}
+        .about-text p{font-family:'Barlow',sans-serif; text-transform:none; color:var(--steel); margin-bottom:1rem; font-weight:400;}
+        .about-text strong{color:var(--ink);}
+        .about-card{padding:2.2rem; display:flex; flex-direction:column; justify-content:center; background:var(--ink); color:#fff; position:relative; overflow:hidden;}
+        .about-card img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.2;}
+        .about-card .role{font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; text-transform:uppercase; color:var(--mustard); margin-bottom:0.5rem; display:block; position:relative;z-index:1;}
+        .about-card h4{font-size:1.6rem; color:#fff; position:relative;z-index:1;}
+        .about-card span.sub{font-family:'Barlow',sans-serif; text-transform:none; color:#cfcabf; font-size:0.9rem; font-weight:400; position:relative;z-index:1;}
+
+        .network-inner{display:flex; align-items:center; gap:1.6rem; flex-wrap:wrap; justify-content:space-between; border:3px solid var(--ink); padding:1.8rem 2rem;}
+        .network-badge{display:flex; align-items:center; gap:1rem;}
+        .network-badge .b-dot{width:14px; height:14px; background:var(--blue); border-radius:50%;}
+        .network-badge h6{margin:0; font-size:1.05rem;}
+        .network-badge span{font-family:'Barlow',sans-serif; text-transform:none; font-size:0.82rem; color:var(--steel); font-weight:400;}
+
+        .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:0; border:3px solid var(--ink);}
+        .panel{padding:2rem; border-right:3px solid var(--ink);}
+        .kv{display:flex; gap:0.8rem; margin-bottom:1rem; font-size:0.95rem; font-family:'Barlow',sans-serif; font-weight:400;}
+        .kv .k{font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.8rem; text-transform:uppercase; color:var(--red); width:100px; flex-shrink:0; padding-top:0.1rem;}
+        .kv a{border-bottom:2px solid var(--red);}
+        .field{margin-bottom:1rem; padding:0 2rem;}
+        .field:first-child{margin-top:2rem;}
+        .field label{display:block; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; text-transform:uppercase; margin-bottom:0.4rem;}
+        .field input, .field textarea{width:100%; border:2px solid var(--ink); padding:0.65rem 0.8rem; font-family:'Barlow',sans-serif; font-size:0.92rem;}
+        .field input:focus, .field textarea:focus{outline:none; border-color:var(--red);}
+        .field-btn{padding:0 2rem 2rem;}
+
+        footer{padding:1.5rem 0; font-family:'Barlow Condensed',sans-serif; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--steel);}
+        .footer-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem;}
+
+        @media(max-width:900px){
+            .hero-grid{grid-template-columns:1fr;}
+            .hero-right{border-left:none; border-top:4px solid var(--ink);}
+            .pillars-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
+            .pillar, .about-text, .panel{border-right:none; border-bottom:3px solid var(--ink);}
+            .process-row{flex-direction:column;}
+            .p-step{border-right:none; border-bottom:3px solid var(--ink);}
+            .p-step:last-child{border-bottom:none;}
+            .field{padding:0 1.2rem;}
+            .field-btn{padding:0 1.2rem 1.5rem;}
+            .nav-links{display:none;}
+            .hero h1{font-size:2.4rem;}
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="wrap nav-row">
+        <div class="brand"><span class="b-dot"></span>SIPRAL SARL</div>
+        <nav class="nav-links">
+            <a href="#services">Activités</a>
+            <a href="#processus">Processus</a>
+            <a href="#about">À propos</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="#contact" class="pill-btn">Contact</a>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-grid">
+        <div class="hero-left">
+            <span class="kicker" data-aos="fade-up">Laboratoire d'analyses médicales</span>
+            <h1 data-aos="fade-up" data-aos-delay="80">Analyses<br/><span class="r">médicales</span><br/>& négoce.</h1>
+            <p data-aos="fade-up" data-aos-delay="150">STÉ SIPRAL SARL est un laboratoire d'analyses médicales et une structure de commercialisation, au service des patients, cliniques et professionnels de santé du Cameroun.</p>
+            <div class="btn-row" data-aos="fade-up" data-aos-delay="220">
+                <a href="#services" class="btn-solid">Nos activités</a>
+                <a href="#contact" class="btn-line">Contact</a>
+            </div>
+        </div>
+        <div class="hero-right" data-aos="fade-left" data-aos-delay="150">
+            <img src="./sipral1.jpg" alt="Laboratoire d'analyses médicales"/>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad" id="services">
+    <div class="wrap">
+        <span class="eyebrow" data-aos="fade-up">Notre activité</span>
+        <h2 class="stitle" data-aos="fade-up">Deux expertises</h2>
+        <p class="ssub" data-aos="fade-up">Un laboratoire d'analyses médicales adossé à une activité de commercialisation, pour un service complet.</p>
+        <div class="pillars-grid" data-aos="fade-up">
+            <div class="pillar">
+                <div class="shape-img"><img src="./sipral2.jpg" alt="Analyses médicales" loading="lazy" /></div>
+                <h3>Analyses médicales</h3>
+                <p>Réalisation d'analyses biologiques et médicales avec rigueur scientifique et confidentialité.</p>
+            </div>
+            <div class="pillar">
+                <div class="shape-img"><img src="./sipral3.jpg" alt="Commercialisation" loading="lazy" /></div>
+                <h3>Commercialisation</h3>
+                <p>Distribution de produits et consommables liés à l'activité de laboratoire et de santé.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad" id="processus">
+    <div class="wrap">
+        <span class="eyebrow" data-aos="fade-up">Notre processus</span>
+        <h2 class="stitle" data-aos="fade-up">Du prélèvement au résultat</h2>
+        <p class="ssub" data-aos="fade-up">Une prise en charge structurée, du premier contact jusqu'à la restitution des résultats.</p>
+        <div class="process-row" data-aos="fade-up">
+            <div class="p-step">
+                <div class="step-img"><img src="./sipral4.jpg" alt="Prise en charge" loading="lazy" /></div>
+                <h5>Prise en charge</h5>
+                <p>Accueil et enregistrement de la demande d'analyse.</p>
+            </div>
+            <div class="p-step">
+                <div class="step-img"><img src="./sipral5.jpg" alt="Prélèvement" loading="lazy" /></div>
+                <h5>Prélèvement</h5>
+                <p>Collecte de l'échantillon dans les règles de l'art.</p>
+            </div>
+            <div class="p-step">
+                <div class="step-img"><img src="./sipral6.jpg" alt="Analyse" loading="lazy" /></div>
+                <h5>Analyse</h5>
+                <p>Traitement au laboratoire selon les protocoles requis.</p>
+            </div>
+            <div class="p-step">
+                <div class="step-img"><img src="./sipral7.jpg" alt="Résultat" loading="lazy" /></div>
+                <h5>Résultat</h5>
+                <p>Restitution des résultats dans les meilleurs délais.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad" id="about">
+    <div class="wrap">
+        <span class="eyebrow" data-aos="fade-up">À propos</span>
+        <h2 class="stitle" data-aos="fade-up">Un laboratoire au service de la santé</h2>
+        <div class="about-grid" data-aos="fade-up">
+            <div class="about-text">
+                <p>STÉ SIPRAL SARL est une entreprise camerounaise active dans les analyses médicales et la commercialisation de produits associés à ce secteur.</p>
+                <p>L'entreprise est dirigée par <strong>M. MABOU SIMEU Franklin</strong>, qui veille à la fiabilité des analyses et à la qualité du service rendu aux patients et partenaires.</p>
+            </div>
+            <div class="about-card">
+                <img src="https://picsum.photos/seed/franklin/600/400" alt="M. MABOU SIMEU Franklin" loading="lazy" />
+                <span class="role">Direction</span>
+                <h4>M. MABOU SIMEU Franklin</h4>
+                <span class="sub">Fondateur — STÉ SIPRAL SARL</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad">
+    <div class="wrap">
+        <span class="eyebrow" data-aos="fade-up">Réseau</span>
+        <h2 class="stitle" data-aos="fade-up">Membre d'un réseau de partenaires</h2>
+        <div class="network-inner" data-aos="fade-up">
+            <div>
+                <p class="ssub" style="margin:0;">STÉ SIPRAL SARL est membre d'un réseau d'entreprises partenaires, aux côtés de FRIENDS CAMEROON COMODITIES.</p>
+            </div>
+            <div class="network-badge">
+                <span class="b-dot"></span>
+                <div><h6>Friends Cameroon Comodities</h6><span>Entreprise partenaire du réseau</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-pad" id="contact" style="border-bottom:none;">
+    <div class="wrap">
+        <span class="eyebrow" data-aos="fade-up">Contact</span>
+        <h2 class="stitle" data-aos="fade-up">Prenez contact avec nous</h2>
+        <div class="contact-grid" data-aos="fade-up">
+            <div class="panel">
+                <div class="kv"><span class="k">Contact</span><span>M. MABOU SIMEU Franklin</span></div>
+                <div class="kv"><span class="k">Téléphone</span><a href="tel:+237699592983">+237 699 592 983</a></div>
+                <div class="kv"><span class="k">Email</span><a href="mailto:societesipralesarl@gmail.com">societesipralesarl@gmail.com</a></div>
+                <div class="kv"><span class="k">Site web</span><a href="https://www.sipralsarl.com" target="_blank">www.sipralsarl.com</a></div>
+                <div class="kv"><span class="k">WhatsApp</span><a href="https://wa.me/237699592983" target="_blank">Écrire sur WhatsApp</a></div>
+            </div>
+            <form>
+                <div class="field"><label>Nom complet</label><input type="text" placeholder="Votre nom" required /></div>
+                <div class="field"><label>Email</label><input type="email" placeholder="vous@exemple.com" required /></div>
+                <div class="field"><label>Message</label><textarea rows="4" placeholder="Votre demande..." required></textarea></div>
+                <div class="field-btn"><button type="submit" class="btn-solid" style="cursor:pointer;">Envoyer</button></div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="wrap footer-row">
+        <span>© 2026 STÉ SIPRAL SARL</span>
+        <span>Cameroun</span>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({ once:true, duration:600, easing:'ease-out-quad', offset:40 });</script>
+</body>
+</html>

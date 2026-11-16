@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>C.D.C SARL — Cabinet Dentaire La Couronne — Import de matériels dentaires et pharmaceutiques</title>
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+<style>
+:root{ --ink:#1B1815; --panel:#241F1A; --cream:#EDE6D9; --gold:#B8933E; --gold-dim:#8A6C2C; --steel:#A79C89; --line:rgba(184,147,62,0.28); }
+*{box-sizing:border-box;}
+body{margin:0; background:var(--ink); color:var(--cream); font-family:system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing:antialiased; line-height:1.8;}
+h1,h2,h3,h4{font-family:'Georgia', 'Times New Roman', Times, serif; font-weight:600; margin:0; letter-spacing:0.02em;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1080px; margin:0 auto; padding:0 1.5rem;}
+.gold-rule{width:52px; height:1px; background:var(--gold); margin:0 auto 1.2rem;}
+
+header{padding:1.6rem 0; border-bottom:1px solid var(--line);}
+.nav-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;}
+.brand{display:flex; align-items:center; gap:0.7rem; font-family:'Georgia', 'Times New Roman', Times, serif; font-size:1.15rem; letter-spacing:0.05em;}
+.brand .seal-mini{width:30px; height:30px; border:1.5px solid var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem;}
+.nav-links{display:flex; gap:1.8rem; font-size:0.75rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--steel);}
+.nav-links a:hover{color:var(--gold);}
+.pill-btn{border:1px solid var(--gold); color:var(--gold); padding:0.55rem 1.4rem; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;}
+.pill-btn:hover{background:var(--gold); color:var(--ink);}
+
+.hero{padding:5rem 0 4rem; text-align:center; position:relative; overflow:hidden;}
+.hero-bg{position:absolute; inset:0; z-index:0; background-image:url('./cdc1.jpg'); background-size:cover; background-position:center; filter:brightness(0.5) saturate(0.9);}
+.hero-bg::after{content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(27,24,21,0.8) 0%, rgba(27,24,21,0.4) 100%);}
+.hero-inner{position:relative; z-index:1; max-width:700px; margin:0 auto;}
+.seal{width:120px; height:120px; border:2px solid var(--gold); border-radius:50%; margin:0 auto 2rem; display:flex; align-items:center; justify-content:center; position:relative; background:rgba(0,0,0,0.3); backdrop-filter:blur(4px);}
+.seal::before{content:""; position:absolute; inset:8px; border:1px solid var(--gold-dim); border-radius:50%;}
+.seal .glyph{font-size:2.6rem;}
+.kicker{display:block; font-size:0.72rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--gold-dim); margin-bottom:1.2rem;}
+.hero h1{font-size:2.6rem; line-height:1.35; margin-bottom:1.5rem; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,0.3);}
+.hero h1 .g{color:var(--gold);}
+.hero p{font-size:1.02rem; color:rgba(255,255,255,0.85); max-width:52ch; margin:0 auto 2rem; text-shadow:0 2px 8px rgba(0,0,0,0.2);}
+.btn-row{display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;}
+.btn-gold{display:inline-block; border:1px solid var(--gold); color:var(--gold); padding:0.8rem 2rem; font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; background:transparent; cursor:pointer;}
+.btn-gold:hover{background:var(--gold); color:var(--ink);}
+.btn-plain{border:1px solid var(--steel); color:var(--cream); padding:0.8rem 2rem; font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; background:transparent; cursor:pointer;}
+.btn-plain:hover{border-color:var(--gold); color:var(--gold);}
+
+.section-pad{padding:4rem 0; border-top:1px solid var(--line);}
+.eyebrow{display:block; text-align:center; font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-dim); margin-bottom:0.8rem;}
+h2.stitle{font-size:1.9rem; text-align:center; margin-bottom:0.6rem;}
+.ssub{text-align:center; color:var(--steel); max-width:60ch; margin:0 auto 2.5rem;}
+
+.service-list{max-width:760px; margin:0 auto;}
+.s-row{display:grid; grid-template-columns:70px 1fr; gap:1.3rem; padding:1.4rem 0; border-top:1px solid var(--line); align-items:center;}
+.s-row:first-child{border-top:none;}
+.s-row .roman{font-family:'Georgia', 'Times New Roman', Times, serif; font-size:1.15rem; color:var(--gold); text-align:center;}
+.s-row h5{font-size:1.05rem; margin-bottom:0.35rem; color:var(--cream);}
+.s-row p{font-size:0.88rem; color:var(--steel); margin:0;}
+.s-row .s-img{width:100%; height:170px; object-fit:cover; border-radius:8px; margin-top:0.5rem;}
+
+.expertise{background:var(--panel);}
+.expertise-inner{max-width:640px; margin:0 auto; text-align:center;}
+.expertise-inner p{color:var(--steel); margin-bottom:1.2rem;}
+.expertise-inner strong{color:var(--cream);}
+.expertise-card{display:inline-block; border:1px solid var(--gold); padding:1.6rem 2.4rem; margin-top:1rem; background:rgba(0,0,0,0.2);}
+.expertise-card .role{display:block; font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-dim); margin-bottom:0.5rem;}
+.expertise-card h4{font-size:1.25rem; margin-bottom:0.3rem;}
+.expertise-card span.sub{font-size:0.85rem; color:var(--steel);}
+.expertise-img{width:100%; max-height:200px; object-fit:cover; border-radius:12px; margin-bottom:1.5rem;}
+
+.network-inner{max-width:700px; margin:0 auto; text-align:center; border:1px solid var(--line); padding:2rem; background:rgba(255,255,255,0.02);}
+.network-inner p{color:var(--steel); margin:0.6rem 0 0;}
+.network-inner .network-img{width:80px; height:80px; border-radius:50%; object-fit:cover; border:2px solid var(--gold); margin-bottom:0.8rem;}
+
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:3rem; max-width:900px; margin:0 auto;}
+.kv{display:flex; gap:1rem; margin-bottom:1.1rem; font-size:0.92rem;}
+.kv .k{font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-dim); width:100px; flex-shrink:0; padding-top:0.15rem;}
+.kv a{border-bottom:1px solid var(--gold);}
+.field{margin-bottom:1.1rem;}
+.field label{display:block; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--steel); margin-bottom:0.4rem;}
+.field input, .field textarea{width:100%; background:transparent; border:none; border-bottom:1px solid var(--line); color:var(--cream); padding:0.5rem 0.1rem; font-family:system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;}
+.field input:focus, .field textarea:focus{outline:none; border-color:var(--gold);}
+
+footer{padding:1.6rem 0; border-top:1px solid var(--line); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--steel);}
+.footer-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem; max-width:1080px; margin:0 auto; padding:0 1.5rem;}
+
+@media(max-width:820px){
+  .contact-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:2rem;}
+  .nav-links{display:none;}
+  .s-row{grid-template-columns:44px 1fr;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <div class="brand"><span class="seal-mini">👑</span>C.D.C — La Couronne</div>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#reseau">Réseau</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="pill-btn">Prendre contact</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-inner">
+    <span class="kicker" data-aos="fade-up">Cabinet Dentaire La Couronne — C.D.C SARL</span>
+    <h1 data-aos="fade-up" data-aos-delay="80">Import de matériels <span class="g">dentaires</span> et pharmaceutiques</h1>
+    <p data-aos="fade-up" data-aos-delay="150">C.D.C SARL est spécialisée dans l'import de matériels dentaires et de produits pharmaceutiques, au service des cabinets dentaires et professionnels de santé du Cameroun.</p>
+    <div class="btn-row" data-aos="fade-up" data-aos-delay="220">
+      <a href="#services" class="btn-gold">Nos services</a>
+      <a href="#contact" class="btn-plain">Nous contacter</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="services">
+  <div class="wrap">
+    <span class="eyebrow" data-aos="fade-up">Nos services</span>
+    <h2 class="stitle" data-aos="fade-up">Import spécialisé</h2>
+    <p class="ssub" data-aos="fade-up">Une double expertise : matériels dentaires et produits pharmaceutiques, importés et livrés avec rigueur.</p>
+    <div class="service-list">
+      <div class="s-row" data-aos="fade-up">
+        <span class="roman">I</span>
+        <div>
+          <h5>Matériels dentaires</h5>
+          <p>Import d'équipements et consommables destinés aux cabinets dentaires.</p>
+          <img class="s-img" src="./cdc2.jpg" alt="Matériels dentaires" loading="lazy" />
+        </div>
+      </div>
+      <div class="s-row" data-aos="fade-up" data-aos-delay="60">
+        <span class="roman">II</span>
+        <div>
+          <h5>Produits pharmaceutiques</h5>
+          <p>Import de produits pharmaceutiques pour professionnels de santé.</p>
+          <img class="s-img" src="./cdc3.jpg" alt="Produits pharmaceutiques" loading="lazy" />
+        </div>
+      </div>
+      <div class="s-row" data-aos="fade-up" data-aos-delay="120">
+        <span class="roman">III</span>
+        <div>
+          <h5>Instruments &amp; consommables</h5>
+          <p>Fournitures techniques pour la pratique dentaire quotidienne.</p>
+          <img class="s-img" src="./cdc5.jpg" alt="Instruments" loading="lazy" />
+        </div>
+      </div>
+      <div class="s-row" data-aos="fade-up" data-aos-delay="180">
+        <span class="roman">IV</span>
+        <div>
+          <h5>Approvisionnement fiable</h5>
+          <p>Suivi des commandes et livraison adaptée aux besoins des cabinets.</p>
+          <img class="s-img" src="./cdc4.jpg" alt="Logistique" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad expertise" id="expertise">
+  <div class="wrap expertise-inner">
+    <span class="eyebrow" data-aos="fade-up">Direction</span>
+    <h2 class="stitle" data-aos="fade-up">Une expertise clinique au service de l'import</h2>
+    <img class="expertise-img" src="./cdc2.jpg" alt="Cabinet dentaire" loading="lazy" data-aos="fade-up" />
+    <p data-aos="fade-up">C.D.C SARL (Cabinet Dentaire La Couronne) s'appuie sur une expertise clinique pour sélectionner des matériels dentaires et des produits pharmaceutiques adaptés aux besoins réels des praticiens.</p>
+    <p data-aos="fade-up">L'entreprise est dirigée par <strong>Dr. Tchoumi Théa Corine</strong>, qui garantit la pertinence et la qualité de chaque produit importé.</p>
+    <div class="expertise-card" data-aos="fade-up" data-aos-delay="100">
+      <span class="role">CEO &amp; Fondatrice</span>
+      <h4>Dr. Tchoumi Théa Corine</h4>
+      <span class="sub">Chirurgien-dentiste — Cabinet Dentaire La Couronne</span>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="reseau">
+  <div class="wrap">
+    <span class="eyebrow" data-aos="fade-up">Réseau</span>
+    <h2 class="stitle" data-aos="fade-up">Membre d'un réseau de partenaires</h2>
+    <div class="network-inner" data-aos="fade-up">
+      <img class="network-img" src="https://picsum.photos/seed/friendslogo/200/200" alt="Friends Cameroon" loading="lazy" />
+      <div class="gold-rule"></div>
+      <p>C.D.C SARL est membre d'un réseau d'entreprises partenaires, aux côtés de <strong style="color:var(--cream);">FRIENDS CAMEROON COMODITIES</strong>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="contact" style="border-bottom:none;">
+  <div class="wrap">
+    <span class="eyebrow" data-aos="fade-up">Contact</span>
+    <h2 class="stitle" data-aos="fade-up">Prenez contact avec nous</h2>
+    <div class="contact-grid">
+      <div data-aos="fade-right">
+        <div class="kv"><span class="k">Contact</span><span>Dr. Tchoumi Théa Corine</span></div>
+        <div class="kv"><span class="k">Téléphone</span><a href="tel:+237699594171">+237 699 594 171</a></div>
+        <div class="kv"><span class="k">Email</span><a href="mailto:drcorinetchoumi@gmail.com">drcorinetchoumi@gmail.com</a></div>
+        <div class="kv"><span class="k">Site web</span><span>Cabinet Dentaire La Couronne</span></div>
+        <div class="kv"><span class="k">WhatsApp</span><a href="https://wa.me/237699594171" target="_blank">Écrire sur WhatsApp</a></div>
+      </div>
+      <div data-aos="fade-left" data-aos-delay="120">
+        <form>
+          <div class="field"><label>Nom complet</label><input type="text" placeholder="Votre nom" required /></div>
+          <div class="field"><label>Email</label><input type="email" placeholder="vous@exemple.com" required /></div>
+          <div class="field"><label>Message</label><textarea rows="4" placeholder="Votre demande..." required></textarea></div>
+          <button type="submit" class="btn-gold" style="background:transparent; border:1px solid var(--gold); cursor:pointer;">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-row">
+    <span>© 2026 C.D.C SARL — Cabinet Dentaire La Couronne</span>
+    <span>Cameroun</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({ once:true, duration:750, easing:'ease-out-sine', offset:50 });</script>
+</body>
+</html>

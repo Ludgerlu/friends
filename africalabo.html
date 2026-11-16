@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AFRICA-LABO — Matériels d'emballage et équipements de laboratoire</title>
+  <link rel="icon" type="image/png" href="./logo-africalabo.png" />
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <style>
+    :root {
+      --ink: #0A1428;      /* bleu marine profond du logo */
+      --green: #C9922E;    /* or, couleur signature du logo */
+      --green-deep: #8B5E15; /* bronze / or foncé du logo */
+      --lime: #F2DBA6;     /* or pâle, touches claires */
+      --paper: #FFFFFF;
+      --grey: #F5F1E7;     /* gris chaud, en harmonie avec l'or */
+      --steel: #5C6570;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Sora', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .mono {
+      font-family: 'Space Mono', monospace;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .pill-btn {
+      background: var(--ink);
+      color: #fff;
+      padding: 0.6rem 1.3rem;
+      border-radius: 40px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: none;
+      transition: 0.2s;
+    }
+    .pill-btn:hover {
+      background: var(--green-deep);
+    }
+    .btn-primary-custom {
+      background: var(--green);
+      color: #fff;
+      padding: 0.85rem 1.6rem;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: none;
+      transition: 0.2s;
+    }
+    .btn-primary-custom:hover {
+      background: var(--green-deep);
+    }
+    .btn-ghost-custom {
+      border: 2px solid var(--ink);
+      padding: 0.8rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      background: transparent;
+      transition: 0.2s;
+    }
+    .btn-ghost-custom:hover {
+      background: var(--ink);
+      color: #fff;
+    }
+    .hero-image {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+    }
+    .hero-image img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--green-deep);
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+    .about-stats div {
+      border-left: 3px solid var(--green);
+      padding-left: 1rem;
+    }
+    .about-stats .number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--ink);
+      display: block;
+    }
+    .about-stats .label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+    .about-image {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+    .about-image img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+    .cat-card {
+      border-radius: 20px;
+      padding: 1.6rem;
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .cat-card .code {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      opacity: 0.85;
+    }
+    .cat-card .cat-img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 0.5rem;
+    }
+    .cat-card h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0.4rem 0 0.2rem;
+    }
+    .cat-card p {
+      font-size: 0.82rem;
+      opacity: 0.92;
+      margin: 0;
+    }
+    .sector-chip {
+      border: 2px solid #E7EAE6;
+      border-radius: 16px;
+      padding: 1.3rem;
+      display: flex;
+      gap: 0.9rem;
+      align-items: center;
+      transition: 0.25s;
+    }
+    .sector-chip:hover {
+      border-color: var(--green);
+      transform: translateY(-3px);
+    }
+    .sector-chip .ic {
+      font-size: 1.6rem;
+    }
+    .sector-chip h6 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .sector-chip span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--steel);
+      text-transform: uppercase;
+    }
+    .testimonial-card {
+      background: var(--paper);
+      border-radius: 20px;
+      padding: 1.8rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      transition: 0.3s;
+      height: 100%;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+    }
+    .testimonial-card .quote {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+    .testimonial-card .quote::before {
+      content: "“";
+      font-size: 2rem;
+      color: var(--green);
+      line-height: 0.8;
+      margin-right: 0.15rem;
+    }
+    .testimonial-card .quote::after {
+      content: "”";
+      font-size: 2rem;
+      color: var(--green);
+      line-height: 0.8;
+      margin-left: 0.1rem;
+    }
+    .testimonial-card .author .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--green);
+      flex-shrink: 0;
+    }
+    .testimonial-card .author .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .partner-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      transition: 0.2s;
+      opacity: 0.7;
+    }
+    .partner-item:hover {
+      opacity: 1;
+    }
+    .partner-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #f8faf7;
+      padding: 0.5rem;
+      border: 1px solid #E7EAE6;
+      transition: 0.2s;
+    }
+    .partner-item:hover img {
+      border-color: var(--green);
+      box-shadow: 0 4px 12px rgba(20, 154, 91, 0.15);
+    }
+    .partner-item span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      color: var(--steel);
+      letter-spacing: 0.04em;
+    }
+    .contact-left {
+      background: var(--ink);
+      color: #fff;
+      padding: 3.5rem 2.5rem;
+    }
+    .contact-left h2 {
+      font-size: 2.1rem;
+      font-weight: 800;
+    }
+    .contact-left p {
+      color: #c8d1cb;
+    }
+    .c-row {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    .c-row .k {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: var(--lime);
+      width: 90px;
+      flex-shrink: 0;
+      padding-top: 0.15rem;
+    }
+    .c-row a {
+      border-bottom: 1px solid var(--green);
+      color: #fff;
+    }
+    .contact-right {
+      padding: 3.5rem 2.5rem;
+      background: var(--grey);
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 2px solid #E7EAE6;
+      border-radius: 12px;
+      padding: 0.7rem 0.9rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.92rem;
+      background: #fff;
+    }
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+    footer {
+      background: var(--ink);
+      color: #c8d1cb;
+      padding: 1.6rem 0;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+    }
+    @media (max-width: 768px) {
+      .hero-image img {
+        height: 200px;
+      }
+      .about-image img {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-white border-bottom" style="border-color:#E7EAE6;">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <img src="./logo-africalabo.png" alt="Logo AFRICA-LABO SARL" style="width:42px;height:42px;object-fit:contain;border-radius:8px;" />
+        <span class="d-flex flex-column lh-sm">
+          <span class="fw-bold" style="font-size:1.05rem;">AFRICA-LABO SARL</span>
+          <!-- <span class="fst-italic" style="font-size:0.68rem;color:var(--green-deep);font-weight:600;">Produits médicaux, pharmaceutiques et Cosmétiques</span> -->
+        </span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-3">
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#about">À propos</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#services">Produits</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#secteurs">Secteurs</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#testimonials">Témoignages</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#partners">Partenaires</a></li>
+          <li class="nav-item"><a href="#contact" class="pill-btn">Demander un devis</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6" data-aos="fade-right">
+          <span class="badge bg-warning text-dark mb-3 px-3 py-2" style="background:var(--lime)!important;font-weight:700;">Distributeur agréé — Cameroun</span>
+          <h1 class="display-4 fw-bold">Matériels d'emballage <span style="color:var(--green);">et bien plus</span> pour vos laboratoires.</h1>
+          <p class="fs-5 text-secondary" style="max-width:44ch;">AFRICA-LABO SARL fournit des matériels d'emballage et une large gamme d'équipements et consommables pour laboratoires, industries et professionnels de la santé.</p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="#services" class="btn-primary-custom">Voir le catalogue</a>
+            <a href="#contact" class="btn-ghost-custom">Nous contacter</a>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left" data-aos-delay="150">
+          <div class="hero-image"><img src="./africalabo1.jpg" alt="Laboratoire et équipements" loading="lazy" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ===== HERO MODIFIÉ ===== -->
+<section class="py-5">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-6" data-aos="fade-right">
+        <span class="badge bg-warning text-dark mb-3 px-3 py-2" style="background:var(--lime)!important;font-weight:700;">Distributeur agréé — Cameroun</span>
+        <h1 class="display-4 fw-bold">Produits médicaux, pharmaceutiques <span style="color:var(--green);">et Cosmétiques.</span></h1>
+        <p class="fs-5 text-secondary" style="max-width:44ch;">AFRICA-LABO SARL est spécialisée dans l'import et la vente d'équipements pharmaceutiques et médicaux destinés aux cliniques, hôpitaux et structures de santé au Cameroun.</p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="#services" class="btn-primary-custom">Voir le catalogue</a>
+          <a href="#contact" class="btn-ghost-custom">Nous contacter</a>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="150">
+        <div class="hero-image"><img src="./africalabo1.jpg" alt="Laboratoire et équipements" loading="lazy" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="py-5" id="about">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12" data-aos="fade-up">
+          <span class="eyebrow">Qui sommes-nous</span>
+          <h2 class="section-title">Votre partenaire de confiance</h2>
+        </div>
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="about-text">
+            <p class="text-secondary">AFRICA-LABO SARL est une entreprise camerounaise spécialisée dans la fourniture de matériels d'emballage, d'équipements et de consommables pour les laboratoires, l'industrie pharmaceutique, l'agroalimentaire et les structures de santé.</p>
+            <p class="text-secondary">Basée à Douala, nous mettons notre expertise et notre réseau logistique au service de nos clients pour garantir des livraisons rapides et des produits de haute qualité, conformes aux normes internationales.</p>
+            <div class="about-stats d-flex gap-4 flex-wrap mt-4">
+              <div><span class="number">+50</span><span class="label">Clients actifs</span></div>
+              <div><span class="number">7</span><span class="label">Années d'expertise</span></div>
+              <div><span class="number">4</span><span class="label">Secteurs couverts</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+          <div class="about-image"><img src="./africalabo2.jpg" alt="Entrepôt et logistique" loading="lazy" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATALOG ===== -->
+  <section class="py-5" id="services" style="background:var(--grey);">
+    <div class="container">
+      <span class="eyebrow" data-aos="fade-up">Catalogue produits</span>
+      <h2 class="section-title" data-aos="fade-up">Nos catégories phares</h2>
+      <p class="text-secondary" style="max-width:56ch;" data-aos="fade-up">Des matériels d'emballage et bien d'autres équipements pour laboratoires, industries et professionnels.</p>
+      <div class="row g-4 mt-2">
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="cat-card" style="background:#C9922E;">
+            <img src="./africalabo4.jpg" alt="Emballage" class="cat-img" loading="lazy" />
+            <div><span class="code">PROD-01</span><h4>Matériels d'emballage</h4><p>Solutions d'emballage pour produits industriels et pharmaceutiques.</p></div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="60">
+          <div class="cat-card" style="background:#8B5E15;">
+            <img src="./africalabo5.jpg" alt="Étiquetage" class="cat-img" loading="lazy" />
+            <div><span class="code">PROD-02</span><h4>Étiquetage & marquage</h4><p>Équipements et consommables d'étiquetage professionnel.</p></div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="120">
+          <div class="cat-card" style="background:#0A1428;">
+            <img src="./africalabo6.jpg" alt="Consommables" class="cat-img" loading="lazy" />
+            <div><span class="code">PROD-03</span><h4>Consommables de labo</h4><p>Verrerie, filtres, réactifs courants et consommables divers.</p></div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="cat-card" style="background:#5C6570;">
+            <img src="./africalabo7.jpg" alt="Balances" class="cat-img" loading="lazy" />
+            <div><span class="code">PROD-04</span><h4>Balances & mesure</h4><p>Instruments de pesée et de mesure pour laboratoire et industrie.</p></div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="60">
+          <div class="cat-card" style="background:#8B5E15;">
+            <img src="./africalabo8.jpg" alt="Froid" class="cat-img" loading="lazy" />
+            <div><span class="code">PROD-05</span><h4>Conservation au froid</h4><p>Solutions de réfrigération et chaîne du froid pour produits sensibles.</p></div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="120">
+          <div class="cat-card" style="background:#C9922E;">
+            <img src="./africalabo1.jpg" alt="Équipements" class="cat-img" loading="lazy" />
+            <div><span class="code">PROD-06</span><h4>Équipements divers</h4><p>Large gamme d'équipements techniques selon vos besoins.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTORS ===== -->
+  <section class="py-5" id="secteurs">
+    <div class="container">
+      <span class="eyebrow" data-aos="fade-up">Secteurs</span>
+      <h2 class="section-title" data-aos="fade-up">Qui accompagnons-nous ?</h2>
+      <div class="row g-3 mt-3">
+        <div class="col-md-3" data-aos="fade-up">
+          <div class="sector-chip"><span class="ic">🏭</span><div><h6>Agroalimentaire</h6><span>Emballage & conditionnement</span></div></div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="60">
+          <div class="sector-chip"><span class="ic">💊</span><div><h6>Industrie pharmaceutique</h6><span>Emballage pharmaceutique</span></div></div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="120">
+          <div class="sector-chip"><span class="ic">🔬</span><div><h6>Laboratoires</h6><span>Équipement & consommables</span></div></div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="180">
+          <div class="sector-chip"><span class="ic">🏥</span><div><h6>Structures de santé</h6><span>Fournitures techniques</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="py-5" id="testimonials" style="background:var(--grey);">
+    <div class="container">
+      <span class="eyebrow" data-aos="fade-up">Témoignages</span>
+      <h2 class="section-title" data-aos="fade-up">Ce que nos clients disent</h2>
+      <p class="text-secondary" style="max-width:56ch;" data-aos="fade-up">Des retours d'expérience de partenaires qui nous font confiance.</p>
+      <div class="row g-4 mt-2">
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="testimonial-card">
+            <div class="quote">AFRICA-LABO nous livre des matériels d'emballage de qualité constante. La réactivité et le suivi sont exemplaires.</div>
+            <div class="author d-flex align-items-center gap-2">
+              <div class="avatar"><img src="https://picsum.photos/seed/al1/100/100" alt="Dr. Eya'a" /></div>
+              <div><div class="fw-bold">Dr. Eya'a</div><div class="mono small text-secondary">Directeur, Labo Pharma</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="80">
+          <div class="testimonial-card">
+            <div class="quote">Grâce à leurs solutions d'étiquetage, nous avons gagné en efficacité sur nos lignes de conditionnement. Un partenaire fiable.</div>
+            <div class="author d-flex align-items-center gap-2">
+              <div class="avatar"><img src="https://picsum.photos/seed/al2/100/100" alt="Mme. Ngo Biyong" /></div>
+              <div><div class="fw-bold">Mme. Ngo Biyong</div><div class="mono small text-secondary">Responsable QA, Agro-Industrie</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="160">
+          <div class="testimonial-card">
+            <div class="quote">La gamme de consommables et l'assistance technique font d'AFRICA-LABO un fournisseur de choix pour notre centre de recherche.</div>
+            <div class="author d-flex align-items-center gap-2">
+              <div class="avatar"><img src="https://picsum.photos/seed/al3/100/100" alt="Pr. Tchakounté" /></div>
+              <div><div class="fw-bold">Pr. Tchakounté</div><div class="mono small text-secondary">Chercheur, Université de Douala</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact" id="contact">
+    <div class="container-fluid px-0">
+      <div class="row g-0">
+        <div class="col-lg-6 contact-left" data-aos="fade-right">
+          <h2>Parlons de votre besoin</h2>
+          <p>Un projet d'emballage ou d'équipement de laboratoire ? Notre équipe vous répond rapidement.</p>
+          <div class="c-row"><span class="k">Contact</span><span>Mme MBANGO Winnie</span></div>
+          <div class="c-row"><span class="k">Téléphone</span><a href="tel:+237691855590">+237 691 855 590</a></div>
+          <div class="c-row"><span class="k">Email</span><a href="mailto:mbangowinnie10@gmail.com">mbangowinnie10@gmail.com</a></div>
+          <div class="c-row"><span class="k">Site web</span><a href="https://www.africalabo.com" target="_blank">www.africalabo.com</a></div>
+          <div class="c-row"><span class="k">WhatsApp</span><a href="https://wa.me/237691855590" target="_blank">Écrire sur WhatsApp</a></div>
+          <div class="c-row"><span class="k">Adresse</span><span>Douala, Cameroun</span></div>
+        </div>
+        <div class="col-lg-6 contact-right" data-aos="fade-left" data-aos-delay="150">
+          <form>
+            <div class="field mb-3"><label class="fw-bold small">Nom complet</label><input type="text" class="form-control" placeholder="Votre nom" /></div>
+            <div class="field mb-3"><label class="fw-bold small">Email</label><input type="email" class="form-control" placeholder="vous@exemple.com" /></div>
+            <div class="field mb-3"><label class="fw-bold small">Sujet</label><input type="text" class="form-control" placeholder="Objet de votre demande" /></div>
+            <div class="field mb-3"><label class="fw-bold small">Message</label><textarea class="form-control" rows="4" placeholder="Votre message..."></textarea></div>
+            <button type="submit" class="btn-primary-custom">Envoyer le message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <span class="d-flex align-items-center gap-2">
+        <img src="./logo-africalabo.png" alt="Logo AFRICA-LABO SARL" style="width:22px;height:22px;object-fit:contain;border-radius:5px;" />
+        © 2026 AFRICA-LABO SARL
+      </span>
+      <span>Douala, Cameroun</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js">
+  </script>
+  <script>
+    AOS.init({ once: true, duration: 700, easing: 'ease-out-back', offset: 50 });
+  </script>
+</body>
+</html>

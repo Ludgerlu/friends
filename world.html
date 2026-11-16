@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FRIENDS CAMEROON COMODITIES SARL — Import, distribution et commerce general</title>
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+<style>
+:root{ 
+    --ink:#484349; 
+    --paper:#f5f2eb; 
+    --cloud:#ece8df; 
+    --green:#92b7b2; 
+    --green-deep:#7b9f9a; 
+    --gold:#d6c9b8; 
+    --steel:#6b6763; 
+    --line:#ddd8cf; 
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.75;}
+h1,h2,h3,h4{font-weight:800; letter-spacing:-0.01em; margin:0;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1140px; margin:0 auto; padding:0 1.5rem;}
+
+header{position:sticky; top:0; z-index:60; background:rgba(245,242,235,0.9); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); padding:0.9rem 0; transition:box-shadow 0.3s ease;}
+header.scrolled{box-shadow:0 6px 20px rgba(72,67,73,0.06);}
+.nav-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;}
+.brand{display:flex; align-items:center; gap:0.7rem; font-weight:800; font-size:1.1rem; color:var(--ink);}
+.brand img{height:38px; width:auto; display:block;}
+.brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: var(--paper);
+  }
+  .brand-logo {
+      height: 100px;
+      width: 100px;
+      object-fit: contain;
+      border-radius: 4px;
+      /* border: 1px solid var(--amber-dim); */
+      flex-shrink: 0;
+  }
+  .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+  }
+  .brand-name {
+      font-weight: 700;
+      font-size: 2rem;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+  }
+.nav-links{display:flex; gap:1.7rem; font-size:0.85rem; font-weight:600; color:var(--steel);}
+.nav-links a{position:relative; padding:0.2rem 0;}
+.nav-links a::after{content:""; position:absolute; left:0; bottom:-2px; width:0; height:2px; background:var(--green); transition:width 0.3s ease;}
+.nav-links a:hover{color:var(--green-deep);}
+.nav-links a:hover::after{width:100%;}
+.pill-btn{background:var(--ink); color:var(--paper); padding:0.6rem 1.4rem; border-radius:30px; font-weight:700; font-size:0.82rem; transition:transform 0.25s ease, background 0.25s ease;}
+.pill-btn:hover{background:var(--green-deep); color:#fff; transform:translateY(-2px);}
+
+/* HERO avec image de fond */
+.hero{position:relative; padding:4.5rem 0 3.5rem; min-height:100vh; display:flex; align-items:center; overflow:hidden;}
+.hero-bg{position:absolute; inset:0; z-index:0; background-image:url('https://picsum.photos/seed/worldbusiness/1600/900'); background-size:cover; background-position:center; filter:brightness(0.55) saturate(0.9);}
+.hero-bg::after{content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(72,67,73,0.85) 0%, rgba(72,67,73,0.40) 100%);}
+.hero-grid{display:grid; grid-template-columns:1.2fr 1fr; gap:2.5rem; align-items:center; position:relative; z-index:1;}
+.badge{display:inline-block; background:rgba(245,242,235,0.12); backdrop-filter:blur(4px); color:#fff; font-size:0.78rem; font-weight:700; padding:0.4rem 1rem; border-radius:30px; margin-bottom:1.3rem; border:1px solid rgba(245,242,235,0.15);}
+.hero h1{font-size:2.9rem; line-height:1.14; margin-bottom:0.8rem; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,0.3);}
+.hero h1 .hl{color:var(--gold); position:relative; display:inline-block;}
+.hero h1 .hl::after{content:""; position:absolute; left:0; bottom:4px; width:100%; height:10px; background:var(--gold); opacity:0.3; z-index:-1; transform:scaleX(0); transform-origin:left; animation:underlineGrow 1s ease 0.6s forwards;}
+@keyframes underlineGrow{to{transform:scaleX(1);}}
+.hero .motto{display:inline-block; font-size:1rem; color:var(--gold); font-weight:600; letter-spacing:0.02em; margin-bottom:1.2rem; border-left:3px solid var(--gold); padding-left:1rem; background:rgba(72,67,73,0.4); backdrop-filter:blur(4px); padding:0.5rem 1rem; border-radius:6px;}
+.hero p{color:rgba(245,242,235,0.85); font-size:1.05rem; max-width:48ch; margin-bottom:1.7rem; text-shadow:0 2px 8px rgba(0,0,0,0.2);}
+.btn-row{display:flex; gap:0.9rem; flex-wrap:wrap;}
+.btn-primary{background:var(--green); color:var(--ink); padding:0.85rem 1.7rem; border-radius:30px; font-weight:700; font-size:0.9rem; transition:transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease; display:inline-block;}
+.btn-primary:hover{background:var(--green-deep); color:#fff; transform:translateY(-3px); box-shadow:0 10px 24px rgba(146,183,178,0.4);}
+.btn-ghost{border:1.5px solid rgba(245,242,235,0.5); color:#fff; padding:0.8rem 1.6rem; border-radius:30px; font-weight:700; font-size:0.9rem; transition:0.25s ease; display:inline-block;}
+.btn-ghost:hover{background:var(--paper); color:var(--ink); transform:translateY(-3px);}
+
+/* globe visual */
+.globe-wrap{position:relative; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;}
+.orbit{position:absolute; border:1px dashed rgba(245,242,235,0.16); border-radius:50%;}
+.o1{width:100%; height:100%; animation:spin 40s linear infinite;}
+.o2{width:72%; height:72%; animation:spin 26s linear infinite reverse;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.globe-core{position:relative; width:55%; height:55%; border-radius:50%; background:var(--ink); overflow:hidden; box-shadow:0 20px 40px rgba(0,0,0,0.4); animation:corePulse 5s ease-in-out infinite;}
+@keyframes corePulse{0%,100%{transform:scale(1);} 50%{transform:scale(1.03);}}
+.globe-core .lat{position:absolute; left:0; right:0; height:1px; background:rgba(245,242,235,0.14);}
+.globe-core .lat1{top:30%;} .globe-core .lat2{top:50%;} .globe-core .lat3{top:70%;}
+.globe-core .lon{position:absolute; top:0; bottom:0; width:1px; background:rgba(245,242,235,0.14); left:50%;}
+.globe-core .lon2{left:25%; transform:scaleX(0.55); border-radius:50%;}
+.node{position:absolute; width:10px; height:10px; background:var(--gold); border-radius:50%; box-shadow:0 0 0 5px rgba(214,201,184,0.22); animation:nodePulse 2.4s ease-in-out infinite;}
+.n1{top:14%; left:20%; animation-delay:0s;}
+.n2{top:64%; right:12%; animation-delay:0.6s;}
+.n3{bottom:8%; left:40%; animation-delay:1.2s;}
+@keyframes nodePulse{0%,100%{box-shadow:0 0 0 5px rgba(214,201,184,0.22);} 50%{box-shadow:0 0 0 10px rgba(214,201,184,0.05);}}
+
+/* sections */
+.section-pad{padding:4rem 0;}
+.eyebrow{font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--green-deep); margin-bottom:0.6rem; display:block;}
+h2.stitle{font-size:2.1rem; margin-bottom:0.6rem;}
+.ssub{color:var(--steel); max-width:60ch; margin-bottom:2.2rem;}
+
+/* PRODUCTS pillars */
+.pillars-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.3rem;}
+.pillar{background:#fff; border:1px solid var(--line); border-radius:18px; padding:1.8rem; transition:transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; text-align:center;}
+.pillar:hover{transform:translateY(-8px) rotate(-0.5deg); box-shadow:0 16px 32px rgba(72,67,73,0.1); border-color:transparent;}
+.pillar .product-img{width:100%; height:160px; object-fit:cover; border-radius:12px; margin-bottom:0.8rem; transition:transform 0.3s ease;}
+.pillar:hover .product-img{transform:scale(1.04);}
+.pillar h3{font-size:1.15rem; margin-bottom:0.5rem;}
+.pillar p{color:var(--steel); font-size:0.9rem; margin:0;}
+
+/* MACHINES GALLERY */
+.machines-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;}
+.machine-card{background:#fff; border:1px solid var(--line); border-radius:18px; padding:1.2rem; transition:transform 0.3s ease, box-shadow 0.3s ease; text-align:center;}
+.machine-card:hover{transform:translateY(-6px); box-shadow:0 12px 28px rgba(72,67,73,0.08); border-color:var(--green);}
+.machine-card img{width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:0.8rem;}
+.machine-card h4{font-size:1rem; margin-bottom:0.3rem;}
+.machine-card p{font-size:0.8rem; color:var(--steel); margin:0;}
+
+.about{background:var(--ink); color:var(--paper); padding:4rem 0; position:relative; overflow:hidden;}
+.about::after{content:""; position:absolute; bottom:-100px; left:-100px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(146,183,178,0.25), transparent 70%); animation:floatBlob 10s ease-in-out infinite reverse;}
+.about-grid{display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; position:relative; z-index:1;}
+.about .eyebrow{color:var(--gold);}
+.about h2{color:var(--paper);}
+.about p{color:var(--cloud);}
+.about strong{color:#fff;}
+.ceo-card{background:rgba(245,242,235,0.06); border:1px solid rgba(245,242,235,0.14); border-radius:18px; padding:1.8rem; transition:transform 0.3s ease;}
+.ceo-card:hover{transform:translateY(-4px);}
+.ceo-card .role{font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--gold); display:block; margin-bottom:0.5rem;}
+.ceo-card h4{color:var(--paper); font-size:1.3rem; margin-bottom:0.3rem;}
+.ceo-card span.sub{font-size:0.88rem; color:var(--cloud);}
+
+/* TESTIMONIALS */
+.testimonials{padding:4rem 0; background:var(--cloud);}
+.testimonial-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;}
+.t-card{background:#fff; border-radius:18px; padding:1.8rem; box-shadow:0 4px 16px rgba(72,67,73,0.04); transition:0.3s; border:1px solid var(--line);}
+.t-card:hover{transform:translateY(-6px); box-shadow:0 12px 28px rgba(72,67,73,0.08);}
+.t-card .quote{font-style:italic; font-size:1rem; line-height:1.6; color:var(--ink); margin-bottom:1rem;}
+.t-card .quote::before{content:"“"; font-size:2.2rem; color:var(--green); line-height:0.8; margin-right:0.15rem;}
+.t-card .quote::after{content:"”"; font-size:2.2rem; color:var(--green); line-height:0.8; margin-left:0.1rem;}
+.t-card .author{display:flex; align-items:center; gap:0.8rem;}
+.t-card .author .avatar{width:44px; height:44px; border-radius:50%; overflow:hidden; border:2px solid var(--green); flex-shrink:0;}
+.t-card .author .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+.t-card .author .info .name{font-weight:700; font-size:0.95rem;}
+.t-card .author .info .role{font-size:0.78rem; color:var(--steel);}
+
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:3rem;}
+.panel{background:var(--cloud); border-radius:18px; padding:1.8rem;}
+.kv{display:flex; gap:0.8rem; margin-bottom:1rem; font-size:0.92rem;}
+.kv .k{font-size:0.72rem; text-transform:uppercase; font-weight:700; color:var(--green-deep); width:90px; flex-shrink:0; padding-top:0.15rem;}
+.kv a{border-bottom:1px solid var(--green-deep); transition:color 0.2s ease;}
+.kv a:hover{color:var(--green-deep);}
+.field{margin-bottom:1rem;}
+.field label{display:block; font-weight:600; font-size:0.82rem; margin-bottom:0.35rem;}
+.field input, .field textarea{width:100%; border:1.5px solid var(--line); border-radius:14px; padding:0.7rem 0.9rem; font-family:inherit; font-size:0.92rem; background:#fff; transition:border-color 0.2s ease, box-shadow 0.2s ease;}
+.field input:focus, .field textarea:focus{outline:none; border-color:var(--green); box-shadow:0 0 0 3px rgba(146,183,178,0.2);}
+
+footer{background:var(--ink); color:var(--cloud); padding:1.6rem 0; font-size:0.8rem;}
+.footer-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem;}
+
+@media(max-width:900px){
+  .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
+  .pillars-grid, .machines-grid{grid-template-columns:1fr 1fr;}
+  .testimonial-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .hero h1{font-size:2.1rem;}
+  .hero{min-height:auto; padding:3rem 0;}
+}
+@media(max-width:600px){
+  .pillars-grid, .machines-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header id="mainHeader">
+  <div class="wrap nav-row">
+    <a href="#top" class="brand">
+        <img class="brand-logo" src="./logo-world.avif" alt="Logo FRIENDS CAMEROON COMODITIES" loading="lazy" />
+        <div class="brand-text">
+            <span class="brand-name">FRIENDS CAMEROON COMODITIES</span>
+        </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Activites</a>
+      <a href="#machines">Appareils</a>
+      <a href="#about">A propos</a>
+      <a href="#testimonials">Temoignages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="pill-btn">Nous contacter</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-grid">
+    <div data-aos="fade-right" data-aos-duration="900">
+      <span class="badge">Import, distribution & commerce general</span>
+      <h1>Import et Distribution des appareils, produits pharmaceutiques, médicaux et <span class="hl">commerce général.</span></h1>
+      <div class="motto">Appareils, produits pharmaceutiques et medicaux, sans frontieres.</div>
+      <p>FRIENDS CAMEROON COMODITIES SARL importe et distribue des appareils, des produits pharmaceutiques et medicaux, ainsi que des produits de commerce general, au service du marche camerounais.</p>
+      <div class="btn-row">
+        <a href="#services" class="btn-primary">Nos activites</a>
+        <a href="#contact" class="btn-ghost">Nous contacter</a>
+      </div>
+    </div>
+    <div data-aos="zoom-in" data-aos-delay="150" data-aos-duration="900">
+      <div class="globe-wrap">
+        <span class="orbit o1"></span>
+        <span class="orbit o2"></span>
+        <div class="globe-core">
+          <img src="./world10.jpg" alt="" srcset="" style="width: 100%;height: 100%;">
+        </div>
+        <span class="node n1"></span>
+        <span class="node n2"></span>
+        <span class="node n3"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="services">
+  <div class="wrap">
+    <span class="eyebrow" data-aos="fade-up">Nos activites</span>
+    <h2 class="stitle" data-aos="fade-up">Trois domaines d'intervention</h2>
+    <p class="ssub" data-aos="fade-up">Une entreprise generaliste, capable de repondre a des besoins varies en equipements et produits.</p>
+    <div class="pillars-grid">
+      <div class="pillar" data-aos="flip-left">
+        <img class="product-img" src="./world2.jpg" alt="Appareils" loading="lazy" />
+        <h3>Appareils</h3>
+        <p>Import et distribution d'appareils pour particuliers, entreprises et institutions.</p>
+      </div>
+      <div class="pillar" data-aos="flip-left" data-aos-delay="120">
+        <img class="product-img" src="./world3.jpg" alt="Pharmaceutique et medical" loading="lazy" />
+        <h3>Pharmaceutique & medical</h3>
+        <p>Distribution de produits pharmaceutiques et medicaux pour professionnels de sante.</p>
+      </div>
+      <div class="pillar" data-aos="flip-left" data-aos-delay="240">
+        <img class="product-img" src="./world4.jpg" alt="Commerce general" loading="lazy" />
+        <h3>Commerce general</h3>
+        <p>Import-export et negoce de produits divers selon les besoins du marche.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW MACHINES SECTION -->
+<section class="section-pad" id="machines" style="background:var(--cloud);">
+  <div class="wrap">
+    <span class="eyebrow" data-aos="fade-up">Notre gamme</span>
+    <h2 class="stitle" data-aos="fade-up">Appareils & machines disponibles</h2>
+    <p class="ssub" data-aos="fade-up">Une sélection d'appareils et de machines de pointe pour répondre aux besoins des professionnels.</p>
+    <div class="machines-grid">
+      <div class="machine-card" data-aos="fade-up" data-aos-duration="600">
+        <img src="./world5.jpg" alt="Échographie" loading="lazy" />
+        <h4>Échographie</h4>
+        <p>Appareil d'imagerie médicale haute résolution pour diagnostics précis.</p>
+      </div>
+      <div class="machine-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="80">
+        <img src="./world6.jpg" alt="Scanner médical" loading="lazy" />
+        <h4>Scanner médical</h4>
+        <p>Tomodensitomètre performant pour examens radiologiques avancés.</p>
+      </div>
+      <div class="machine-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="160">
+        <img src="./world7.jpg" alt="Équipement de laboratoire" loading="lazy" />
+        <h4>Équipement de laboratoire</h4>
+        <p>Instruments et machines pour analyses biologiques et chimiques.</p>
+      </div>
+      <div class="machine-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="240">
+        <img src="./world8.jpg" alt="Matériel dentaire" loading="lazy" />
+        <h4>Matériel dentaire</h4>
+        <p>Équipements et consommables pour cabinets dentaires modernes.</p>
+      </div>
+      <div class="machine-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="320">
+        <img src="./world9.jpg" alt="Instruments chirurgicaux" loading="lazy" />
+        <h4>Instruments chirurgicaux</h4>
+        <p>Outils et dispositifs médicaux pour interventions chirurgicales.</p>
+      </div>
+      <div class="machine-card" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+        <img src="./world10.jpg" alt="Machine de conditionnement" loading="lazy" />
+        <h4>Machine de conditionnement</h4>
+        <p>Solutions d'emballage et de conditionnement pour l'industrie.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div data-aos="fade-right">
+      <span class="eyebrow">A propos</span>
+      <h2 class="stitle">Une entreprise generaliste, tournee vers le monde</h2>
+      <p>FRIENDS CAMEROON COMODITIES SARL est une entreprise camerounaise active dans l'import et la distribution d'appareils, de produits pharmaceutiques, medicaux, ainsi que dans le commerce general.</p>
+      <p>L'entreprise est dirigee par <strong>Mme ODIE Antoinette, Epouse TCHAGOP</strong>, qui veille a la diversite et a la qualite de l'offre proposee a ses clients.</p>
+    </div>
+    <div data-aos="fade-left" data-aos-delay="100">
+      <div class="ceo-card">
+        <span class="role">Direction</span>
+        <h4>Mme ODIE Antoinette, Epse TCHAGOP</h4>
+        <span class="sub">CEO — FRIENDS CAMEROON COMODITIES SARL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <span class="eyebrow" data-aos="fade-up">Temoignages</span>
+    <h2 class="stitle" data-aos="fade-up">Ce que nos clients disent</h2>
+    <p class="ssub" data-aos="fade-up">Des retours d'experience de partenaires qui nous font confiance.</p>
+    <div class="testimonial-grid">
+      <div class="t-card" data-aos="fade-up">
+        <div class="quote">FRIENDS CAMEROON COMODITIES nous a fourni des equipements de qualite avec un delai de livraison remarquable. Un partenaire fiable.</div>
+        <div class="author">
+          <div class="avatar"><img src="https://picsum.photos/seed/w1/100/100" alt="Dr. Ngoa" loading="lazy" /></div>
+          <div class="info"><div class="name">Dr. Ngoa</div><div class="role">Directeur, Clinique la Paix</div></div>
+        </div>
+      </div>
+      <div class="t-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="quote">Leur service commercial est reactif et les produits repondent parfaitement a nos besoins en pharmacie.</div>
+        <div class="author">
+          <div class="avatar"><img src="https://picsum.photos/seed/w2/100/100" alt="Mme. Mvondo" loading="lazy" /></div>
+          <div class="info"><div class="name">Mme. Mvondo</div><div class="role">Pharmacienne, Pharma-Santé</div></div>
+        </div>
+      </div>
+      <div class="t-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="quote">Une entreprise serieuse qui tient ses engagements. Nous les recommandons pour tout besoin d'importation.</div>
+        <div class="author">
+          <div class="avatar"><img src="https://picsum.photos/seed/w3/100/100" alt="M. Tchakounte" loading="lazy" /></div>
+          <div class="info"><div class="name">M. Tchakounte</div><div class="role">Responsable Achats, Groupe industriel</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="contact">
+  <div class="wrap contact-grid">
+    <div data-aos="fade-right">
+      <span class="eyebrow">Contact</span>
+      <h2 class="stitle">Ecrivez-nous</h2>
+      <form>
+        <div class="field"><label>Nom complet</label><input type="text" placeholder="Votre nom" required /></div>
+        <div class="field"><label>Email</label><input type="email" placeholder="vous@exemple.com" required /></div>
+        <div class="field"><label>Message</label><textarea rows="4" placeholder="Votre message..." required></textarea></div>
+        <button type="submit" class="btn-primary" style="border:none; cursor:pointer;">Envoyer</button>
+      </form>
+    </div>
+    <div data-aos="fade-left" data-aos-delay="150">
+      <div class="panel">
+        <div class="kv"><span class="k">Contact</span><span>Mme ODIE Antoinette, Epse TCHAGOP</span></div>
+        <div class="kv"><span class="k">Telephone</span><a href="tel:+237671227694">+237 671 227 694</a></div>
+        <div class="kv"><span class="k">Email</span><a href="mailto:antoinette.bipedi@gmail.com">antoinette.bipedi@gmail.com</a></div>
+        <div class="kv"><span class="k">WhatsApp</span><a href="https://wa.me/237671227694" target="_blank">Ecrire sur WhatsApp</a></div>
+        <div class="kv"><span class="k">Adresse</span><span>Cameroun</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>(c) 2026 FRIENDS CAMEROON COMODITIES SARL</span>
+    <span>Cameroun</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({ once:true, duration:700, easing:'ease-out-cubic', offset:50 });
+const header = document.getElementById('mainHeader');
+window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 40); });
+</script>
+</body>
+</html>

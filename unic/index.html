@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNICA PLASTIC — Fabricant de sachets & sacs plastiques | Douala</title>
+    <meta name="description" content="UNICA PLASTIC fabrique et fournit des sachets et sacs plastiques pour l'agriculture, la pharmacie, l'alimentation et l'industrie depuis son usine de Bonabéri-Mabanda, Douala." />
+
+    <!-- ===== FONTS (première version) ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- ===== BOOTSTRAP ===== -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           ROOT — thème de la première version (teal + orange)
+           ============================================================ */
+        :root {
+            --ink: #16241F;
+            --deep: #0B3B30;
+            --steel: #5C7A72;
+            --paper: #FFFFFF;
+            --paper-dim: #F2F6F4;
+            --teal: #0E8C6F;
+            --teal-dim: #0A6B55;
+            --orange: #FF5A1F;
+            --orange-deep: #CC4415;
+            --line: rgba(22, 36, 31, 0.12);
+            --line-light: rgba(255, 255, 255, 0.16);
+            --radius: 12px;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            font-weight: 400;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, .display-font {
+            font-family: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .text-teal { color: var(--teal); }
+        .text-orange { color: var(--orange); }
+        .bg-ink { background-color: var(--ink); }
+        .bg-deep { background-color: var(--deep); }
+        .bg-paper-dim { background-color: var(--paper-dim); }
+
+        ::selection {
+            background: var(--orange);
+            color: #fff;
+        }
+
+        /* ============================================================
+           REFCODE (comme dans la première version)
+           ============================================================ */
+        .refcode {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--orange-deep);
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+
+        /* ============================================================
+           BOUTONS (orange comme signal)
+           ============================================================ */
+        .btn-signal {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: var(--orange);
+            color: #fff;
+            border: 2px solid var(--orange);
+            padding: 0.55rem 1.4rem;
+            border-radius: 30px;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .btn-signal:hover {
+            background: var(--ink);
+            border-color: var(--ink);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 90, 31, 0.25);
+        }
+
+        .btn-line {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: transparent;
+            color: var(--ink);
+            border: 2px solid var(--line);
+            padding: 0.55rem 1.4rem;
+            border-radius: 30px;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        }
+        .btn-line:hover {
+            background: var(--ink);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           NAVBAR (claire, transparente au départ)
+           ============================================================ */
+        .navbar-custom {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.1rem 0;
+            background: rgba(255,255,255,0.0);
+            transition: background 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+            border-bottom: 1px solid transparent;
+        }
+        .navbar-custom.scrolled {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 24px rgba(26,42,36,0.06);
+            border-bottom: 1px solid var(--line);
+        }
+        .navbar-custom .brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--ink);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+        .navbar-custom .brand .mark {
+            width: 12px; height: 12px;
+            background: var(--orange);
+            border-radius: 2px;
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
+        .nav-links a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(22, 36, 31, 0.6);
+            position: relative;
+            padding: 0.25rem 0;
+            transition: color 0.25s ease;
+            text-decoration: none;
+        }
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 0; height: 1.5px;
+            background: var(--orange);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--ink);
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .navbar-toggler-custom {
+            background: transparent;
+            border: 1px solid var(--line);
+            width: 40px; height: 40px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .navbar-toggler-custom span {
+            display: block;
+            width: 18px;
+            height: 1.5px;
+            background: var(--ink);
+            position: relative;
+        }
+        .navbar-toggler-custom span::before,
+        .navbar-toggler-custom span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 18px;
+            height: 1.5px;
+            background: var(--ink);
+        }
+        .navbar-toggler-custom span::before { top: -6px; }
+        .navbar-toggler-custom span::after { top: 6px; }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: var(--paper);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem 8vw;
+            gap: 1.2rem;
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
+        }
+        .mobile-menu.open { transform: translateY(0); }
+        .mobile-menu a {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: -0.02em;
+            transition: color 0.2s ease;
+            text-decoration: none;
+        }
+        .mobile-menu a:hover { color: var(--orange); }
+        .mobile-menu a span {
+            color: var(--orange-deep);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 0.8rem;
+            letter-spacing: 0.06em;
+        }
+
+        /* ============================================================
+           HERO — CARROUSEL PLEIN ÉCRAN (comme sur l'image)
+           ============================================================ */
+        .hero-carousel {
+            margin-top: 72px; /* hauteur navbar */
+            border-bottom: 2px solid var(--line);
+        }
+        .hero-carousel .carousel-item {
+            height: 85vh;
+            min-height: 500px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-carousel .carousel-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(2px);
+            z-index: 1;
+        }
+        .hero-carousel .carousel-item .carousel-caption {
+            z-index: 2;
+            bottom: 20%;
+            text-align: left;
+            max-width: 620px;
+            left: 10%;
+            right: auto;
+            padding: 0;
+        }
+        .hero-carousel .carousel-item .carousel-caption .refcode {
+            color: var(--orange-deep);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+        }
+        .hero-carousel .carousel-item .carousel-caption h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+            line-height: 1.05;
+            color: var(--ink);
+            margin-bottom: 0.6rem;
+        }
+        .hero-carousel .carousel-item .carousel-caption h2 .sub {
+            font-weight: 300;
+            font-size: 0.6em;
+            color: var(--orange);
+            display: block;
+        }
+        .hero-carousel .carousel-item .carousel-caption p {
+            font-size: 1.1rem;
+            color: var(--steel);
+            margin-bottom: 1.5rem;
+            max-width: 480px;
+        }
+        .hero-carousel .carousel-item .carousel-caption .btn-signal {
+            background: var(--orange);
+            border-color: var(--orange);
+            color: #fff;
+        }
+        .hero-carousel .carousel-item .carousel-caption .btn-signal:hover {
+            background: var(--ink);
+            border-color: var(--ink);
+        }
+
+        .hero-carousel .carousel-control-prev,
+        .hero-carousel .carousel-control-next {
+            width: 5%;
+            opacity: 0.7;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 44px;
+        }
+        .hero-carousel .carousel-control-prev-icon,
+        .hero-carousel .carousel-control-next-icon {
+            background-color: var(--ink);
+            border-radius: 50%;
+            padding: 0.6rem;
+            background-size: 60%;
+        }
+        .hero-carousel .carousel-indicators {
+            bottom: 2rem;
+        }
+        .hero-carousel .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1.5px solid var(--orange);
+            background: transparent;
+            opacity: 0.5;
+        }
+        .hero-carousel .carousel-indicators .active {
+            background: var(--orange);
+            opacity: 1;
+        }
+
+        /* ============================================================
+           ABOUT (version originale)
+           ============================================================ */
+        .about-mission-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 1.6rem 1.4rem;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .about-mission-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(22,36,31,0.06);
+        }
+        .about-mission-card .icon { font-size: 1.7rem; margin-bottom: 0.4rem; display: block; }
+        .about-mission-card h5 { font-weight: 600; font-size: 1.05rem; }
+        .about-mission-card p { font-size: 0.88rem; color: var(--steel); margin: 0; }
+
+        .photo-placeholder {
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1.5px dashed var(--line);
+            background: var(--paper-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--steel);
+            gap: 0.4rem;
+            text-align: center;
+        }
+        .photo-placeholder .icon { font-size: 1.8rem; opacity: 0.5; }
+        .photo-placeholder span.label { font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; }
+        .about-photo { height: 100%; width: 100%; min-height: 300px; }
+
+        /* ============================================================
+           PRODUITS — CARROUSEL (tu as dit que ça te plaisait)
+           ============================================================ */
+        .product-slide {
+            min-height: 380px;
+            background: var(--paper-dim);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            padding: 2.5rem 3rem;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--line);
+        }
+        .product-slide .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(2px);
+            z-index: 1;
+        }
+        .product-slide .content {
+            position: relative;
+            z-index: 2;
+            max-width: 580px;
+        }
+        .product-slide .content .refcode {
+            color: var(--orange-deep);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+        .product-slide .content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            line-height: 1.1;
+            margin-bottom: 0.4rem;
+        }
+        .product-slide .content h3 .sub {
+            font-weight: 300;
+            font-size: 0.6em;
+            color: var(--orange);
+            display: block;
+        }
+        .product-slide .content p {
+            color: var(--steel);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .product-carousel .carousel-control-prev,
+        .product-carousel .carousel-control-next {
+            width: 5%;
+            opacity: 0.6;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+        }
+        .product-carousel .carousel-control-prev-icon,
+        .product-carousel .carousel-control-next-icon {
+            background-color: var(--ink);
+            border-radius: 50%;
+            padding: 0.5rem;
+            background-size: 60%;
+        }
+        .product-carousel .carousel-indicators {
+            position: relative;
+            margin-top: 1.2rem;
+        }
+        .product-carousel .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1.5px solid var(--orange);
+            background: transparent;
+            opacity: 0.4;
+        }
+        .product-carousel .carousel-indicators .active {
+            background: var(--orange);
+            opacity: 1;
+        }
+
+        /* ============================================================
+           SERVICES — comme dans la première version (gauche + droite)
+           ============================================================ */
+        .spec-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--line);
+        }
+        .spec-row:last-child { border-bottom: none; }
+        .spec-row .code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--orange-deep);
+            width: 3.5rem;
+            flex-shrink: 0;
+            padding-top: 0.15rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+        .spec-row h5 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+        .spec-row p {
+            font-size: 0.87rem;
+            color: var(--steel);
+            margin: 0;
+        }
+
+        /* ============================================================
+           TÉMOIGNAGES — CARROUSEL
+           ============================================================ */
+        .testimonial-carousel .carousel-item .quote-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 2rem 1.8rem;
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .testimonial-carousel .carousel-item .quote-card .quote-icon {
+            font-size: 2.6rem;
+            color: var(--orange);
+            opacity: 0.25;
+            line-height: 1;
+        }
+        .testimonial-carousel .carousel-item .quote-card blockquote {
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--ink);
+            margin: 0.6rem 0 1rem;
+            font-weight: 400;
+        }
+        .testimonial-carousel .carousel-item .quote-card .author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+        .testimonial-carousel .carousel-item .quote-card .author .avatar {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--orange);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        .testimonial-carousel .carousel-item .quote-card .author .info .name {
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+        .testimonial-carousel .carousel-item .quote-card .author .info .title {
+            font-size: 0.78rem;
+            color: var(--steel);
+        }
+
+        .testimonial-carousel .carousel-control-prev,
+        .testimonial-carousel .carousel-control-next {
+            width: 5%;
+            opacity: 0.6;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+        }
+        .testimonial-carousel .carousel-control-prev-icon,
+        .testimonial-carousel .carousel-control-next-icon {
+            background-color: var(--ink);
+            border-radius: 50%;
+            padding: 0.6rem;
+            background-size: 60%;
+        }
+        .testimonial-carousel .carousel-indicators {
+            position: relative;
+            margin-top: 1.2rem;
+        }
+        .testimonial-carousel .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1.5px solid var(--orange);
+            background: transparent;
+            opacity: 0.4;
+        }
+        .testimonial-carousel .carousel-indicators .active {
+            background: var(--orange);
+            opacity: 1;
+        }
+
+        /* ============================================================
+           SECTEURS
+           ============================================================ */
+        .sector-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 1.4rem 1rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            height: 100%;
+        }
+        .sector-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(26,42,36,0.06);
+            border-color: var(--orange);
+        }
+        .sector-card .emoji {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: var(--paper-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 0.6rem;
+        }
+        .sector-card h6 { font-weight: 600; font-size: 0.9rem; margin: 0; }
+
+        /* ============================================================
+           CONTACT
+           ============================================================ */
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .contact-info-item .icon {
+            font-size: 1.1rem;
+            color: var(--orange);
+            width: 1.5rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        .contact-info-item .content {
+            font-size: 0.92rem;
+            color: var(--steel);
+        }
+        .contact-info-item .content strong { color: var(--ink); }
+
+        .contact-photo {
+            height: 160px;
+            margin-bottom: 1.5rem;
+        }
+
+        .whatsapp-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #25D366;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .whatsapp-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(37,211,102,0.3);
+            color: #fff;
+        }
+
+        .btn-outline-paper {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: transparent;
+            color: #fff;
+            border: 1.5px solid rgba(255,255,255,0.35);
+            padding: 0.55rem 1.4rem;
+            border-radius: 30px;
+            transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+            display: inline-block;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-outline-paper:hover {
+            border-color: #fff;
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           REVEAL
+           ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.23,1,0.32,1), transform 0.7s cubic-bezier(0.23,1,0.32,1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-stagger.visible .stagger-child {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger-child {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.5s cubic-bezier(0.23,1,0.32,1), transform 0.5s cubic-bezier(0.23,1,0.32,1);
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 1.8rem;
+            right: 1.8rem;
+            width: 44px;
+            height: 44px;
+            background: var(--ink);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(12px);
+            transition: opacity 0.35s ease, transform 0.35s ease, background 0.25s ease;
+            z-index: 900;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        #backToTop.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        #backToTop:hover { background: var(--orange); }
+
+        .hover-orange:hover { color: var(--orange) !important; }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 991px) {
+            .nav-links { display: none; }
+            .hero-carousel .carousel-item { height: 60vh; min-height: 400px; }
+            .hero-carousel .carousel-item .carousel-caption { left: 5%; bottom: 15%; max-width: 90%; }
+            .hero-carousel .carousel-item .carousel-caption h2 { font-size: 2rem; }
+        }
+        @media (max-width: 768px) {
+            .hero-carousel .carousel-item { height: 50vh; min-height: 320px; }
+            .product-slide { padding: 1.5rem; min-height: 260px; }
+            .product-slide .content h3 { font-size: 1.4rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar-custom" id="mainNav">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="#top" class="brand">
+                <span class="mark"></span>
+                UNICA PLASTIC
+            </a>
+            <div class="nav-links d-flex align-items-center gap-4">
+                <a href="#about" class="nav-link-item">À propos</a>
+                <a href="#produits" class="nav-link-item">Produits</a>
+                <a href="#services" class="nav-link-item">Services</a>
+                <a href="#temoignages" class="nav-link-item">Témoignages</a>
+                <a href="#contact" class="nav-link-item">Contact</a>
+                <a href="#contact" class="btn-signal">Devis</a>
+            </div>
+            <button class="navbar-toggler-custom d-lg-none" id="menuToggle" aria-label="Ouvrir le menu">
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about"><span>01</span>À propos</a>
+        <a href="#produits"><span>02</span>Produits</a>
+        <a href="#services"><span>03</span>Services</a>
+        <a href="#temoignages"><span>04</span>Témoignages</a>
+        <a href="#contact"><span>05</span>Contact</a>
+    </div>
+
+    <!-- ============================================================
+    HERO — CARROUSEL PLEIN ÉCRAN (comme sur l'image)
+    ============================================================ -->
+    <section class="hero-carousel" id="top">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+            <div class="carousel-indicators" id="heroIndicators">
+                <!-- généré par JS -->
+            </div>
+            <div class="carousel-inner" id="heroCarouselInner">
+                <!-- généré par JS -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Suivant</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    ABOUT (version originale)
+    ============================================================ -->
+    <section class="py-5 py-md-6" id="about">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 reveal">
+                    <span class="refcode">Réf. 01 — Entreprise</span>
+                    <h2 class="display-5 fw-bold mb-3">Qui sommes-nous</h2>
+                    <p style="color: var(--steel);">Implantée à Bonabéri‑Mabanda, à Douala, UNICA PLASTIC fabrique des sachets et sacs plastiques destinés aux pépinières, à l'agriculture, à la pharmacie, aux pressings, à l'alimentation et à l'industrie.</p>
+                    <p style="color: var(--steel);">Sous la direction de <strong style="color: var(--ink);">M. Tchomgwi Alain sosthene</strong>, nous mettons notre outil de production au service des professionnels camerounais qui recherchent des sachets robustes, fournis dans les délais et adaptés à leur secteur d'activité.</p>
+                    <div class="row g-3 mt-4">
+                        <div class="col-md-6">
+                            <div class="about-mission-card">
+                                <span class="icon">🎯</span>
+                                <h5>Mission</h5>
+                                <p>Fournir des sachets et sacs plastiques solides et conformes aux besoins de chaque secteur, à des prix compétitifs.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="about-mission-card">
+                                <span class="icon">🌍</span>
+                                <h5>Vision</h5>
+                                <p>Devenir une référence dans la fabrication de sachets plastiques à Douala et dans le reste du Cameroun.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="about-mission-card">
+                                <span class="icon">⚙️</span>
+                                <h5>Valeurs</h5>
+                                <p>Qualité, réactivité et proximité avec chaque client, du pépiniériste à l'industriel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 reveal">
+                    <div class="photo-placeholder about-photo">
+                        <img src="./image1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PRODUITS — CARROUSEL (tu as dit que ça te plaisait)
+    ============================================================ -->
+    <section class="py-5 py-md-6 bg-paper-dim" id="produits">
+        <div class="container">
+            <div class="text-center mb-4 reveal">
+                <span class="refcode">Réf. 02 — Catalogue</span>
+                <h2 class="display-5 fw-bold mb-0">Nos produits</h2>
+                <p class="mt-1" style="color: var(--steel);">Huit gammes de sachets et sacs plastiques, fabriqués sur mesure.</p>
+            </div>
+
+            <div id="productCarousel" class="carousel slide product-carousel" data-bs-ride="carousel" data-bs-interval="6000">
+                <div class="carousel-inner" id="productCarouselInner">
+                    <!-- généré par JS -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
+                <div class="carousel-indicators" id="productIndicators">
+                    <!-- généré par JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SERVICES — comme dans la première version
+    ============================================================ -->
+    <section class="py-5 py-md-6" id="services">
+        <div class="container">
+            <div class="row g-5 align-items-start">
+                <div class="col-lg-5 reveal">
+                    <span class="refcode">Réf. 03 — Services</span>
+                    <h2 class="display-5 fw-bold mb-3">Ce que nous faisons</h2>
+                    <p style="color: var(--steel);">Au-delà de la fabrication, nous accompagnons chaque client dans le choix du bon sachet pour son activité.</p>
+                    <a href="#contact" class="btn-signal mt-2">Discuter de votre projet</a>
+                </div>
+                <div class="col-lg-7 reveal">
+                    <div id="servicesList">
+                        <!-- généré par JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    TÉMOIGNAGES — CARROUSEL
+    ============================================================ -->
+    <section class="py-5 py-md-6 bg-paper-dim" id="temoignages">
+        <div class="container">
+            <div class="text-center mb-4 reveal">
+                <span class="refcode">Réf. 04 — Avis</span>
+                <h2 class="display-5 fw-bold mb-0">Ce que nos clients disent</h2>
+            </div>
+
+            <div id="testimonialCarousel" class="carousel slide testimonial-carousel" data-bs-ride="carousel" data-bs-interval="7000">
+                <div class="carousel-inner" id="testimonialCarouselInner">
+                    <!-- généré par JS -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
+                <div class="carousel-indicators" id="testimonialIndicators">
+                    <!-- généré par JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SECTEURS
+    ============================================================ -->
+    <section class="py-5 py-md-6" id="partenaires">
+        <div class="container">
+            <div class="mb-4 reveal">
+                <span class="refcode">Réf. 05 — Secteurs</span>
+                <h2 class="display-5 fw-bold mb-0">Des secteurs qui nous font confiance</h2>
+            </div>
+            <div class="row g-3 reveal-stagger reveal" id="sectorsGrid">
+                <!-- généré par JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CTA CONTACT
+    ============================================================ -->
+    <section class="bg-ink text-white py-5 py-md-6 position-relative overflow-hidden">
+        <div class="position-absolute top-0 end-0 w-50 h-100" style="background:radial-gradient(circle at 70% 30%, rgba(255,90,31,0.15), transparent 70%); pointer-events:none;"></div>
+        <div class="container position-relative">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8 reveal">
+                    <span class="refcode" style="color: var(--orange);">Un projet ? Un besoin en sachets ?</span>
+                    <h2 class="display-5 fw-bold">Contactez-nous dès aujourd'hui</h2>
+                    <p class="fs-5 text-white-50">Décrivez-nous votre besoin — dimensions, quantité, secteur — et nous vous proposons une solution adaptée.</p>
+                </div>
+                <div class="col-lg-4 reveal">
+                    <div class="d-flex flex-column gap-3">
+                        <a href="https://wa.me/237690065843" target="_blank" rel="noopener" class="whatsapp-pill justify-content-center">💬 WhatsApp : 690 06 58 43</a>
+                        <a href="#contact" class="btn-outline-paper text-center">Formulaire de contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CONTACT
+    ============================================================ -->
+    <section class="py-5 py-md-6" id="contact">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-7 reveal">
+                    <span class="refcode">Réf. 06 — Contact / Devis</span>
+                    <h2 class="display-5 fw-bold mb-3">Demandez un devis ou des informations</h2>
+                    <p style="color: var(--steel);">Précisez le type de sachet, les dimensions souhaitées et la quantité : nous revenons vers vous rapidement.</p>
+
+                    <form action="#" method="POST">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label fw-semibold small text-uppercase mono">Nom complet</label>
+                                <input type="text" class="form-control border-2" id="name" placeholder="Votre nom" required style="border-color: var(--line); background:#fff; border-radius: var(--radius);" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label fw-semibold small text-uppercase mono">Téléphone</label>
+                                <input type="tel" class="form-control border-2" id="phone" placeholder="6XX XX XX XX" required style="border-color: var(--line); background:#fff; border-radius: var(--radius);" />
+                            </div>
+                            <div class="col-12">
+                                <label for="subject" class="form-label fw-semibold small text-uppercase mono">Type de sachet / sac</label>
+                                <input type="text" class="form-control border-2" id="subject" placeholder="Ex : sachets pharmaceutiques, sacs poubelles..." style="border-color: var(--line); background:#fff; border-radius: var(--radius);" />
+                            </div>
+                            <div class="col-12">
+                                <label for="message" class="form-label fw-semibold small text-uppercase mono">Message</label>
+                                <textarea class="form-control border-2" id="message" rows="5" placeholder="Dimensions, quantité, délai souhaité..." required style="border-color: var(--line); background:#fff; border-radius: var(--radius);"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn-signal">Envoyer la demande</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-5 reveal">
+                    <div class="bg-white p-4 p-md-5 rounded-3 border" style="border-color: var(--line) !important; height:100%;">
+                        <div class="photo-placeholder contact-photo">
+                            <img src="./image2.jpg" alt="Contact" style="height: 100%; width: 100%; object-fit: cover;">
+                        </div>
+                        <h5 class="fw-bold mb-4">Coordonnées</h5>
+                        <div class="contact-info-item">
+                            <span class="icon">📍</span>
+                            <div class="content"><strong>Adresse :</strong> BP 9622, Douala – Cameroun</div>
+                        </div>
+                        <div class="contact-info-item">
+                            <span class="icon">🏭</span>
+                            <div class="content"><strong>Usine :</strong> Bonabéri – Mabanda, Douala</div>
+                        </div>
+                        <div class="contact-info-item">
+                            <span class="icon">📞</span>
+                            <div class="content"><strong>Téléphone :</strong> +237 677 74 83 69</div>
+                        </div>
+                        <div class="contact-info-item">
+                            <span class="icon">💬</span>
+                            <div class="content"><strong>WhatsApp :</strong> +237 690 06 58 43</div>
+                        </div>
+                        <!-- <a href="https://wa.me/237690065843" target="_blank" rel="noopener" class="whatsapp-pill mt-2">💬 Écrire sur WhatsApp</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="bg-ink text-white-50 py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="text-white fw-semibold">UNICA PLASTIC</h5>
+                    <p style="max-width:280px;">Fabrication et fourniture de sachets et sacs plastiques pour l'agriculture, la pharmacie, l'alimentation, le pressing et l'industrie, à Douala.</p>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h6 class="text-white fw-semibold">Navigation</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="#about" class="text-white-50 text-decoration-none hover-orange">À propos</a></li>
+                        <li><a href="#produits" class="text-white-50 text-decoration-none hover-orange">Produits</a></li>
+                        <li><a href="#services" class="text-white-50 text-decoration-none hover-orange">Services</a></li>
+                        <li><a href="#temoignages" class="text-white-50 text-decoration-none hover-orange">Témoignages</a></li>
+                        <li><a href="#contact" class="text-white-50 text-decoration-none hover-orange">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h6 class="text-white fw-semibold">Suivez-nous</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="https://wa.me/237690065843" target="_blank" rel="noopener" class="text-white-50 text-decoration-none hover-orange">WhatsApp</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="text-white fw-semibold">Contact</h6>
+                    <ul class="list-unstyled small">
+                        <li>BP 9622, Douala, Cameroun</li>
+                        <li>Usine : Bonabéri – Mabanda</li>
+                        <li>+237 677 74 83 69</li>
+                        <li>WhatsApp : +237 690 06 58 43</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-top border-white-10 mt-4 pt-3 d-flex flex-wrap justify-content-between gap-2 mono small text-white-50">
+                <span>© 2026 UNICA PLASTIC — TOUS DROITS RÉSERVÉS</span>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" aria-label="Retour en haut">↑</button>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <script>
+        /* ============================================================
+           DONNÉES
+           ============================================================ */
+
+        // Produits pour le HERO (slider) — exactement comme sur l'image
+        const heroProducts = [
+            { ref: "PP-01", title: "Nouveau - Sachets pour pépinières", sub: "pépinières", desc: "Idéaux pour le démarrage de vos jeunes plants, avec une excellente résistance.", img: "./image2.jpg", btn: "Découvrir" },
+            { ref: "AL-06", title: "Nouveau - Sacs alimentaires", sub: "alimentaires", desc: "Conçus pour préserver la fraîcheur et la sécurité de vos denrées.", img: "./image1.jpg", btn: "Commander" },
+            { ref: "AG-02", title: "Nouveau - Sachets agricoles", sub: "agricoles", desc: "Parfaits pour le stockage et le transport de vos récoltes.", img: "./image.jpg", btn: "Découvrir" },
+        ];
+
+        // Produits pour le carrousel secondaire (catalogue)
+        const productsData = [
+            { ref: "PP-01", title: "Sachets pour pépinières", sub: "pépinières", desc: "Perforés, résistants, adaptés à la croissance de vos jeunes plants.", img: "https://picsum.photos/seed/pepiniere/1600/900", btn: "Découvrir" },
+            { ref: "AL-06", title: "Sacs alimentaires", sub: "alimentaires", desc: "Robustes et hygiéniques pour vos produits frais ou secs.", img: "https://picsum.photos/seed/alimentaire/1600/900", btn: "Commander" },
+            { ref: "AG-02", title: "Sachets agricoles", sub: "agricoles", desc: "Résistants pour le conditionnement de récoltes et d'intrants agricoles.", img: "https://picsum.photos/seed/agricole/1600/900", btn: "Découvrir" },
+            { ref: "PB-03", title: "Sacs poubelles", sub: "poubelles", desc: "Renforcés pour la collecte des déchets ménagers et professionnels.", img: "https://picsum.photos/seed/poubelle/1600/900", btn: "Découvrir" },
+            { ref: "PH-04", title: "Sachets pharmaceutiques", sub: "pharmaceutiques", desc: "Adaptés au conditionnement de produits pharmaceutiques.", img: "https://picsum.photos/seed/pharma/1600/900", btn: "Découvrir" },
+            { ref: "PR-05", title: "Sachets pressing", sub: "pressing", desc: "Fins et transparents pour l'emballage de vêtements nettoyés.", img: "https://picsum.photos/seed/pressing/1600/900", btn: "Découvrir" },
+            { ref: "GN-07", title: "Gaines nues", sub: "gaines nues", desc: "Gaines plastiques nues, base pour tous types d'emballages sur mesure.", img: "https://picsum.photos/seed/gaines/1600/900", btn: "Découvrir" },
+            { ref: "CD-08", title: "Sacs conditionnement", sub: "conditionnement", desc: "Robustes pour le conditionnement et le stockage en gros volumes.", img: "https://picsum.photos/seed/conditionnement/1600/900", btn: "Découvrir" }
+        ];
+
+        // Services
+        const servicesData = [
+            { title: "Fabrication sur mesure", desc: "Sachets selon vos dimensions, épaisseurs et quantités." },
+            { title: "Impression & marquage", desc: "Personnalisation avec votre nom ou logo." },
+            { title: "Conditionnement en gros", desc: "Livraison en ballots ou cartons adaptés." },
+            { title: "Livraison Douala et environs", desc: "Organisation selon votre localisation." },
+            { title: "Conseil par secteur", desc: "Accompagnement pour choisir le bon sachet." }
+        ];
+
+        // Témoignages
+        const testimonialsData = [
+            { quote: "Les sachets pépinières sont solides et résistent bien à l'arrosage quotidien. Un vrai gain de temps.", name: "Pépiniériste", title: "Douala", initials: "PP" },
+            { quote: "Nous commandons régulièrement nos sachets agricoles chez UNICA PLASTIC, la qualité est constante.", name: "Exploitant agricole", title: "Littoral", initials: "EA" },
+            { quote: "Les sachets pharmaceutiques répondent bien à nos besoins de conditionnement, avec un bon suivi.", name: "Officine pharmaceutique", title: "Douala", initials: "OP" },
+            { quote: "Service rapide, équipe joignable facilement sur WhatsApp pour toute question.", name: "Pressing", title: "Douala", initials: "PR" },
+            { quote: "Des sacs alimentaires robustes et hygiéniques. Nous avons trouvé un fournisseur fiable.", name: "Restaurateur", title: "Douala", initials: "RS" }
+        ];
+
+        const sectorsData = [
+            { icon: "🌱", name: "Pépinières" },
+            { icon: "🌾", name: "Agriculture" },
+            { icon: "💊", name: "Pharmacie" },
+            { icon: "👔", name: "Pressing" },
+            { icon: "🍽️", name: "Alimentation" },
+            { icon: "🏭", name: "Industrie" }
+        ];
+
+        /* ============================================================
+           RENDER : HERO CARROUSEL
+           ============================================================ */
+        function renderHero() {
+            const inner = document.getElementById('heroCarouselInner');
+            const indicators = document.getElementById('heroIndicators');
+
+            heroProducts.forEach((p, i) => {
+                // Slide
+                const slide = document.createElement('div');
+                slide.className = `carousel-item ${i === 0 ? 'active' : ''}`;
+                slide.style.backgroundImage = `url('${p.img}')`;
+                slide.innerHTML = `
+                    <div class="overlay"></div>
+                    <div class="carousel-caption">
+                        <h2>${p.title}<span class="sub">${p.sub}</span></h2>
+                        <p>${p.desc}</p>
+                        <a href="#contact" class="btn-signal">${p.btn}</a>
+                    </div>
+                `;
+                inner.appendChild(slide);
+
+                // Indicateur
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.setAttribute('data-bs-target', '#heroCarousel');
+                btn.setAttribute('data-bs-slide-to', i);
+                if (i === 0) btn.className = 'active';
+                btn.setAttribute('aria-label', `Slide ${i + 1}`);
+                indicators.appendChild(btn);
+            });
+        }
+        renderHero();
+
+        /* ============================================================
+           RENDER : PRODUITS (carrousel secondaire)
+           ============================================================ */
+        function renderProducts() {
+            const inner = document.getElementById('productCarouselInner');
+            const indicators = document.getElementById('productIndicators');
+
+            productsData.forEach((p, i) => {
+                const slide = document.createElement('div');
+                slide.className = `carousel-item ${i === 0 ? 'active' : ''}`;
+                slide.innerHTML = `
+                    <div class="product-slide" style="background-image: url('${p.img}');">
+                        <div class="overlay"></div>
+                        <div class="content">
+                            <span class="refcode">Réf. ${p.ref}</span>
+                            <h3>${p.title}<span class="sub">${p.sub}</span></h3>
+                            <p>${p.desc}</p>
+                            <a href="#contact" class="btn-signal">Découvrir</a>
+                        </div>
+                    </div>
+                `;
+                inner.appendChild(slide);
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.setAttribute('data-bs-target', '#productCarousel');
+                btn.setAttribute('data-bs-slide-to', i);
+                if (i === 0) btn.className = 'active';
+                btn.setAttribute('aria-label', `Produit ${i + 1}`);
+                indicators.appendChild(btn);
+            });
+        }
+        renderProducts();
+
+        /* ============================================================
+           RENDER : SERVICES (liste)
+           ============================================================ */
+        function renderServices() {
+            const container = document.getElementById('servicesList');
+            servicesData.forEach((s, i) => {
+                const row = document.createElement('div');
+                row.className = 'spec-row';
+                const code = `S-0${i + 1}`;
+                row.innerHTML = `
+                    <span class="code">${code}</span>
+                    <div>
+                        <h5>${s.title}</h5>
+                        <p>${s.desc}</p>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+        renderServices();
+
+        /* ============================================================
+           RENDER : TÉMOIGNAGES (carrousel)
+           ============================================================ */
+        function renderTestimonials() {
+            const inner = document.getElementById('testimonialCarouselInner');
+            const indicators = document.getElementById('testimonialIndicators');
+
+            testimonialsData.forEach((t, i) => {
+                const slide = document.createElement('div');
+                slide.className = `carousel-item ${i === 0 ? 'active' : ''}`;
+                slide.innerHTML = `
+                    <div class="quote-card">
+                        <div class="quote-icon">"</div>
+                        <blockquote>${t.quote}</blockquote>
+                        <div class="author">
+                            <div class="avatar">${t.initials}</div>
+                            <div class="info">
+                                <div class="name">${t.name}</div>
+                                <div class="title">${t.title}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                inner.appendChild(slide);
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.setAttribute('data-bs-target', '#testimonialCarousel');
+                btn.setAttribute('data-bs-slide-to', i);
+                if (i === 0) btn.className = 'active';
+                btn.setAttribute('aria-label', `Témoignage ${i + 1}`);
+                indicators.appendChild(btn);
+            });
+        }
+        renderTestimonials();
+
+        /* ============================================================
+           RENDER : SECTEURS
+           ============================================================ */
+        function renderSectors() {
+            const grid = document.getElementById('sectorsGrid');
+            sectorsData.forEach((s, i) => {
+                const col = document.createElement('div');
+                col.className = 'col-6 col-md-4 col-lg-2 stagger-child';
+                col.style.transitionDelay = (i * 0.04) + 's';
+                col.innerHTML = `
+                    <div class="sector-card">
+                        <div class="emoji">${s.icon}</div>
+                        <h6>${s.name}</h6>
+                    </div>
+                `;
+                grid.appendChild(col);
+            });
+            requestAnimationFrame(() => grid.querySelectorAll('.stagger-child').forEach(el => el.classList.add('visible')));
+        }
+        renderSectors();
+
+        /* ============================================================
+           INTERACTIONS
+           ============================================================ */
+        const nav = document.getElementById("mainNav");
+        window.addEventListener("scroll", () => {
+            nav.classList.toggle("scrolled", window.scrollY > 60);
+            document.getElementById("backToTop").classList.toggle("show", window.scrollY > 700);
+        });
+
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+        menuToggle.addEventListener("click", () => mobileMenu.classList.toggle("open"));
+        mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => mobileMenu.classList.remove("open")));
+
+        const sections = ["about", "produits", "services", "temoignages", "partenaires", "contact"].map(id => document
+            .getElementById(id));
+        const navItems = document.querySelectorAll(".nav-link-item");
+        const spyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navItems.forEach(a => a.classList.remove("active"));
+                    const match = document.querySelector(`.nav-link-item[href="#${entry.target.id}"]`);
+                    if (match) match.classList.add("active");
+                }
+            });
+        }, { rootMargin: "-45% 0px -50% 0px" });
+        sections.forEach(s => s && spyObserver.observe(s));
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+        document.getElementById("backToTop").addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+</body>
+</html>

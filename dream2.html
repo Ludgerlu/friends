@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DREAM BUSINESS LAND — Produits chimiques de spécialité</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <style>
+    :root {
+      --bg: #0F0E0A;
+      --panel: #1C1A14;
+      --surface: #26231C;
+      --gold: #D4A84B;
+      --gold-deep: #B8893A;
+      --text: #EFECE6;
+      --steel: #A8A092;
+      --line: #3A352A;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1,
+    h2,
+    h3 {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .pill-btn {
+      background: var(--gold);
+      color: var(--bg);
+      padding: 0.6rem 1.4rem;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      border: none;
+      transition: 0.2s;
+      border-radius: 0;
+    }
+    .pill-btn:hover {
+      background: var(--gold-deep);
+      color: #fff;
+    }
+    .btn-solid {
+      background: var(--gold);
+      color: var(--bg);
+      padding: 0.9rem 1.8rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      border: 3px solid var(--gold);
+      transition: 0.25s;
+    }
+    .btn-solid:hover {
+      background: var(--bg);
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+    .btn-line {
+      border: 3px solid var(--gold);
+      padding: 0.85rem 1.7rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: var(--text);
+      transition: 0.25s;
+    }
+    .btn-line:hover {
+      background: var(--gold);
+      color: var(--bg);
+    }
+    .hero-block {
+      background: var(--panel);
+      border: 2px solid var(--gold);
+      padding: 2rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
+    }
+    .hero-block img {
+      width: 40vh;
+      height: 40vh;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+    }
+    .hero-block .lbl {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: var(--steel);
+      letter-spacing: 0.05em;
+    }
+    .feature-strip {
+      background: var(--panel);
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      padding: 1.6rem 0;
+    }
+    .feat-item {
+      text-align: center;
+    }
+    .feat-item img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .feat-item .t {
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: var(--text);
+      display: block;
+    }
+    .feat-item .s {
+      font-size: 0.75rem;
+      color: var(--steel);
+    }
+    .about-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 6px solid var(--gold);
+    }
+    .s-card {
+      padding: 1.6rem;
+      border: 3px solid var(--gold);
+      background: var(--panel);
+      transition: 0.2s;
+      text-align: center;
+    }
+    .s-card:hover {
+      background: var(--surface);
+    }
+    .s-card img {
+      width: 40vh;
+      height: 25vh;
+      border-radius: 5px;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .s-card h5 {
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+    .s-card p {
+      font-size: 0.85rem;
+      color: var(--steel);
+      margin: 0;
+    }
+    .cta-block {
+      background: var(--panel);
+      border-top: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      padding: 3.5rem 0;
+    }
+    .panel {
+      border: 3px solid var(--gold);
+      padding: 1.8rem;
+      background: var(--panel);
+    }
+    .kv {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      font-size: 0.92rem;
+    }
+    .kv .k {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--gold-deep);
+      width: 90px;
+      flex-shrink: 0;
+      padding-top: 0.15rem;
+    }
+    .kv a {
+      color: var(--text);
+      border-bottom: 1px solid var(--gold-deep);
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 2px solid var(--gold);
+      padding: 0.7rem 0.9rem;
+      font-family: inherit;
+      font-size: 0.92rem;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--gold-deep);
+    }
+    footer {
+      background: var(--bg);
+      border-top: 2px solid var(--gold);
+      color: var(--steel);
+      padding: 1.6rem 0;
+      font-size: 0.8rem;
+    }
+    @media (max-width: 768px) {
+      .hero-block {
+        margin-top: 1.5rem;
+      }
+      .s-card {
+        border-bottom: 3px solid var(--gold);
+      }
+      .s-card:last-child {
+        border-bottom: 3px solid var(--gold);
+      }
+    }
+    @media (min-width: 769px) {
+      .s-card {
+        border-right: none;
+        border-bottom: none;
+      }
+      .s-card:nth-child(3n) {
+        border-right: 3px solid var(--gold);
+      }
+      .s-card:nth-last-child(-n+3) {
+        border-bottom: 3px solid var(--gold);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <nav class="navbar navbar-expand-lg" style="background:var(--bg);border-bottom:4px solid var(--gold);padding:1.3rem 0;">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-uppercase text-white" href="#">Dream Business Land</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-3">
+          <li class="nav-item"><a class="nav-link text-uppercase small fw-semibold" style="color:var(--steel);" href="#about">À propos</a></li>
+          <li class="nav-item"><a class="nav-link text-uppercase small fw-semibold" style="color:var(--steel);" href="#services">Produits</a></li>
+          <li class="nav-item"><a class="nav-link text-uppercase small fw-semibold" style="color:var(--steel);" href="#contact">Contact</a></li>
+          <li class="nav-item"><a href="#contact" class="pill-btn">Devis</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row align-items-end g-4">
+        <div class="col-lg-7" data-aos="fade-right">
+          <span class="d-block small fw-bold text-uppercase" style="color:var(--gold-deep);letter-spacing:0.06em;margin-bottom:1rem;">Négoce international — Cameroun</span>
+          <h1 class="display-1 fw-bold" style="font-size:4rem;line-height:0.98;color:var(--text);">Produits chimiques<br /><span style="color:var(--gold);">de spécialité</span></h1>
+          <p class="fs-5" style="color:var(--steel);max-width:44ch;">DREAM BUSINESS LAND importe et distribue des produits chimiques de spécialité destinés aux industries et laboratoires camerounais.</p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="#services" class="btn-solid">Voir nos produits</a>
+            <a href="#contact" class="btn-line">Nous contacter</a>
+          </div>
+        </div>
+        <div class="col-lg-5" data-aos="fade-left" data-aos-delay="150">
+          <div class="hero-block">
+            <img src="./dream1.jpg" alt="M. NZUDIE WABO Carmel" loading="lazy" />
+            <div class="lbl">Import & négoce</div>
+            <div style="font-size:1.2rem;font-weight:700;color:var(--gold);">M. NZUDIE WABO Carmel</div>
+            <div class="lbl">Fondateur</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="feature-strip">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-6 col-md-3 feat-item" data-aos="fade-up">
+          <img src="./dream2.jpg" alt="Sourcing" loading="lazy" />
+          <span class="t">Sourcing international</span>
+          <span class="s">Réseau de fournisseurs</span>
+        </div>
+        <div class="col-6 col-md-3 feat-item" data-aos="fade-up" data-aos-delay="60">
+          <img src="./dream3.jpg" alt="Traçabilité" loading="lazy" />
+          <span class="t">Traçabilité</span>
+          <span class="s">Fiches techniques fournies</span>
+        </div>
+        <div class="col-6 col-md-3 feat-item" data-aos="fade-up" data-aos-delay="120">
+          <img src="./dream4.jpg" alt="Logistique" loading="lazy" />
+          <span class="t">Logistique sécurisée</span>
+          <span class="s">Acheminement contrôlé</span>
+        </div>
+        <div class="col-6 col-md-3 feat-item" data-aos="fade-up" data-aos-delay="180">
+          <img src="./dream5.jpg" alt="Accompagnement" loading="lazy" />
+          <span class="t">Accompagnement</span>
+          <span class="s">Suivi personnalisé</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="py-5" id="about">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="about-visual" style="aspect-ratio:1/1;"><img src="./dream5.jpg" alt="Dream Business Land" loading="lazy" /></div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+          <span class="d-block small fw-bold text-uppercase" style="color:var(--gold-deep);letter-spacing:0.08em;margin-bottom:0.6rem;">À propos</span>
+          <h2 class="display-5 fw-bold" style="color:var(--text);">Votre partenaire en produits chimiques</h2>
+          <p style="color:var(--steel);">DREAM BUSINESS LAND est une entreprise camerounaise active dans l'importation et la distribution de produits chimiques de spécialité destinés à l'industrie et à la recherche.</p>
+          <p style="color:var(--steel);">Sous la direction de <strong style="color:var(--text);">M. NZUDIE WABO Carmel</strong>, l'entreprise développe un réseau de fournisseurs internationaux pour garantir la disponibilité et la qualité de ses produits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="py-5" id="services" style="background:var(--surface);">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <span class="d-block small fw-bold text-uppercase" style="color:var(--gold-deep);letter-spacing:0.08em;">Catalogue</span>
+        <h2 class="display-5 fw-bold" style="color:var(--text);">Produits chimiques de spécialité</h2>
+        <p class="text-secondary" style="max-width:60ch;margin:0 auto;">Une offre de produits chimiques de spécialité pour répondre aux besoins variés de l'industrie.</p>
+      </div>
+      <div class="row g-0">
+        <div class="col-md-4 s-card" data-aos="fade-up">
+          <img src="./dream1.jpg" alt="Industriels" loading="lazy" />
+          <h5>Produits chimiques industriels</h5>
+          <p>Pour process et transformation industrielle.</p>
+        </div>
+        <div class="col-md-4 s-card" data-aos="fade-up" data-aos-delay="80">
+          <img src="./dream2.jpg" alt="Additifs" loading="lazy" />
+          <h5>Additifs & spécialités</h5>
+          <p>Additifs chimiques pour formulations spécifiques.</p>
+        </div>
+        <div class="col-md-4 s-card" data-aos="fade-up" data-aos-delay="160">
+          <img src="./dream3.jpg" alt="Réactifs" loading="lazy" />
+          <h5>Réactifs & solvants</h5>
+          <p>Pour laboratoires et industries.</p>
+        </div>
+        <div class="col-md-4 s-card" data-aos="fade-up" data-aos-delay="240">
+          <img src="./dream4.jpg" alt="Import" loading="lazy" />
+          <h5>Import & logistique</h5>
+          <p>Importation et acheminement sécurisé.</p>
+        </div>
+        <div class="col-md-4 s-card" data-aos="fade-up" data-aos-delay="320">
+          <img src="./dream5.jpg" alt="Documentation" loading="lazy" />
+          <h5>Documentation technique</h5>
+          <p>Fiches techniques et de sécurité fournies.</p>
+        </div>
+        <div class="col-md-4 s-card" data-aos="fade-up" data-aos-delay="400">
+          <img src="./dream7.jpg" alt="Réseau" loading="lazy" />
+          <h5>Réseau de fournisseurs</h5>
+          <p>Partenariats internationaux fiables.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-block">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8" data-aos="fade-right">
+          <h2 style="color:var(--text);">Un projet d'importation ?</h2>
+          <p style="color:var(--steel);">Discutons ensemble de vos besoins en produits chimiques de spécialité.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+          <a href="#contact" class="btn-solid" style="display:inline-block;">Nous écrire</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="py-5" id="contact">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6" data-aos="fade-right">
+          <span class="d-block small fw-bold text-uppercase" style="color:var(--gold-deep);letter-spacing:0.08em;">Contact</span>
+          <h2 class="display-5 fw-bold" style="color:var(--text);">Écrivez-nous</h2>
+          <form>
+            <div class="field mb-3"><label class="fw-bold small text-uppercase" style="color:var(--steel);">Nom complet</label><input type="text" class="form-control" placeholder="Votre nom" style="background:var(--bg);color:var(--text);border:2px solid var(--gold);border-radius:0;" /></div>
+            <div class="field mb-3"><label class="fw-bold small text-uppercase" style="color:var(--steel);">Email</label><input type="email" class="form-control" placeholder="vous@exemple.com" style="background:var(--bg);color:var(--text);border:2px solid var(--gold);border-radius:0;" /></div>
+            <div class="field mb-3"><label class="fw-bold small text-uppercase" style="color:var(--steel);">Message</label><textarea class="form-control" rows="4" placeholder="Votre message..." style="background:var(--bg);color:var(--text);border:2px solid var(--gold);border-radius:0;"></textarea></div>
+            <button type="submit" class="btn-solid">Envoyer</button>
+          </form>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left" data-aos-delay="150">
+          <div class="panel">
+            <div class="kv"><span class="k">Contact</span><span>M. NZUDIE WABO Carmel</span></div>
+            <div class="kv"><span class="k">Téléphone</span><a href="tel:+237695033901">+237 695 033 901</a></div>
+            <div class="kv"><span class="k">Email</span><a href="mailto:dreambusinessland5@gmail.com">dreambusinessland5@gmail.com</a></div>
+            <div class="kv"><span class="k">Site web</span><a href="https://www.dreambusinessland.com" target="_blank">dreambusinessland.com</a></div>
+            <div class="kv"><span class="k">WhatsApp</span><a href="https://wa.me/237695033901" target="_blank">Écrire sur WhatsApp</a></div>
+            <div class="kv"><span class="k">Adresse</span><span>Douala, Cameroun</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container d-flex justify-content-between flex-wrap gap-2">
+      <span>© 2026 Dream Business Land</span>
+      <span>Douala, Cameroun</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js">
+  </script>
+  <script>
+    AOS.init({ once: true, duration: 650, easing: 'ease-out-quad', offset: 40 });
+  </script>
+</body>
+</html>

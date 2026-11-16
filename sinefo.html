@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>COMPLEXE SINEFO — Machines et équipements pharmaceutiques</title>
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+<style>
+:root{
+  --bg: #FFFFFF;           /* fond blanc */
+  --panel: #F5F8F5;        /* fond de carte légèrement grisé */
+  --line: rgba(46,125,50,0.15);
+  --green: #2E7D32;        /* vert principal */
+  --green-dim: #1B5E20;    /* vert foncé */
+  --green-light: #4CAF50;  /* vert clair */
+  --text: #1A3B2A;         /* vert très foncé pour les textes */
+  --steel: #5A7A5A;        /* vert-gris pour textes secondaires */
+  --shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--bg); color:var(--text); font-family:system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing:antialiased; line-height:1.7;}
+h1,h2,h3,h4{font-family:'Georgia', 'Times New Roman', Times, serif; font-weight:600; text-transform:uppercase; letter-spacing:0.02em; margin:0;}
+a{color:inherit; text-decoration:none;}
+.wrap{max-width:1180px; margin:0 auto; padding:0 1.5rem;}
+
+header{padding:1.2rem 0; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(255,255,255,0.95); backdrop-filter:blur(6px); z-index:60;}
+.nav-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;}
+
+/* ---- Marque avec logo et slogan ---- */
+.brand{display:flex; align-items:center; gap:0.8rem;}
+.brand-logo{height: 100px; width: 100px; object-fit:contain; border-radius:6px; flex-shrink:0;}
+.brand-text{display:flex; flex-direction:column; line-height:1.2;}
+.brand-name{font-family:'Georgia', 'Times New Roman', Times, serif; font-weight:700; font-size:2rem; letter-spacing:0.04em; color:var(--text);}
+.brand-slogan{font-style:italic; font-size:0.78rem; color:var(--steel);}
+.brand-contact{font-size:0.65rem; color:var(--steel); margin-top:0.1rem;}
+.brand-contact a{color:var(--green); border-bottom:1px solid var(--line);}
+.brand-contact a:hover{color:var(--green-light);}
+
+.nav-links{display:flex; gap:1.8rem; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--steel);}
+.nav-links a:hover{color:var(--green);}
+.pill-btn{border:1.5px solid var(--green); color:var(--green); padding:0.55rem 1.3rem; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; background:transparent; cursor:pointer; border-radius:4px;}
+.pill-btn:hover{background:var(--green); color:#fff;}
+
+.hero{position:relative; padding:5rem 0 3.5rem; overflow:hidden; background:var(--bg);}
+.hero-bg{position:absolute; inset:0; z-index:0; background-image:url('./sinefo1.jpg'); background-size:cover; background-position:center; filter:brightness(0.9) saturate(0.8);}
+.hero-bg::after{content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.6) 100%);}
+.hero .hero-grid{position:relative; z-index:1; display:grid; grid-template-columns:1.3fr 1fr; gap:2.5rem; align-items:center;}
+.tag{display:inline-block; border:1px solid var(--green-dim); color:var(--green); font-size:0.7rem; letter-spacing:0.1em; padding:0.35rem 0.9rem; margin-bottom:1.4rem; border-radius:4px;}
+.hero h1{font-size:3.2rem; line-height:1.08; margin-bottom:1.2rem; color:var(--text); text-shadow:0 1px 4px rgba(255,255,255,0.3);}
+.hero h1 .g{color:var(--green);}
+.hero p{color:var(--steel); font-size:0.95rem; max-width:48ch; margin-bottom:1.8rem;}
+.btn-row{display:flex; gap:0.9rem; flex-wrap:wrap;}
+.btn-solid{background:var(--green); color:#fff; padding:0.85rem 1.7rem; font-family:'Georgia', 'Times New Roman', Times, serif; font-weight:600; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.04em; border:none; cursor:pointer; border-radius:4px;}
+.btn-solid:hover{background:var(--green-light);}
+.btn-line{border:1.5px solid var(--green); color:var(--green); padding:0.8rem 1.6rem; font-family:'Georgia', 'Times New Roman', Times, serif; font-weight:600; text-transform:uppercase; font-size:0.85rem; letter-spacing:0.04em; background:transparent; cursor:pointer; border-radius:4px;}
+.btn-line:hover{background:var(--green); color:#fff;}
+
+.section-pad{padding:4rem 0;}
+.eyebrow{font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--green); margin-bottom:0.6rem; display:block; font-family:'Courier New', Courier, monospace;}
+h2.stitle{font-size:2rem; margin-bottom:0.6rem; color:var(--text);}
+.ssub{color:var(--steel); max-width:62ch; margin-bottom:2.2rem; font-size:0.92rem;}
+
+.about-grid{display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center;}
+.about-text p{color:var(--steel); margin-bottom:1rem;}
+.about-text strong{color:var(--text);}
+.about-visual{aspect-ratio:1/1; background:var(--panel); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; overflow:hidden; border-radius:8px;}
+.about-visual img{width:100%; height:100%; object-fit:cover;}
+
+.spec-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+.spec-card{background:var(--panel); padding:1.6rem; transition:0.2s;}
+.spec-card:hover{background:var(--bg);}
+.spec-card .code{font-size:0.68rem; color:var(--green-dim); margin-bottom:0.6rem; display:block; font-family:'Courier New', Courier, monospace;}
+.spec-card .spec-img{width:100%; object-fit:scale-down; border-radius:6px; margin-bottom:0.6rem; border:1px solid var(--line);}
+.spec-card h5{font-size:1.05rem; margin-bottom:0.5rem; color:var(--text);}
+.spec-card p{font-size:0.82rem; color:var(--steel); margin:0;}
+
+.sector-row{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+.sector-card{background:var(--panel); padding:1.4rem; text-align:center;}
+.sector-card .ic{font-size:1.6rem; margin-bottom:0.5rem; display:block;}
+.sector-card h6{font-size:0.85rem; margin-bottom:0.2rem; color:var(--text);}
+.sector-card span{font-family:'Courier New', Courier, monospace; font-size:0.65rem; color:var(--steel); text-transform:uppercase;}
+
+.testimonial-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;}
+.testimonial-card{background:var(--panel); padding:1.8rem; border:1px solid var(--line); border-radius:8px; transition:0.3s;}
+.testimonial-card:hover{border-color:var(--green); box-shadow:var(--shadow);}
+.testimonial-card .quote{font-style:italic; font-size:0.95rem; line-height:1.6; color:var(--text); margin-bottom:1.2rem;}
+.testimonial-card .quote::before{content:"“"; font-size:1.8rem; color:var(--green); line-height:0.8; margin-right:0.2rem;}
+.testimonial-card .quote::after{content:"”"; font-size:1.8rem; color:var(--green); line-height:0.8; margin-left:0.1rem;}
+.testimonial-card .author{display:flex; align-items:center; gap:0.8rem;}
+.testimonial-card .author .avatar{width:44px; height:44px; border-radius:50%; overflow:hidden; border:2px solid var(--green); flex-shrink:0;}
+.testimonial-card .author .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+.testimonial-card .author .info .name{font-weight:600; color:var(--text);}
+.testimonial-card .author .info .role{font-family:'Courier New', Courier, monospace; font-size:0.6rem; text-transform:uppercase; color:var(--steel);}
+
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:3rem;}
+.panel-box{background:var(--panel); border:1px solid var(--line); padding:1.8rem; border-radius:8px;}
+.kv{display:flex; gap:0.8rem; margin-bottom:1rem; font-size:0.88rem;}
+.kv .k{font-size:0.65rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--green); width:90px; flex-shrink:0; padding-top:0.15rem; font-family:'Courier New', Courier, monospace;}
+.kv a{border-bottom:1px solid var(--line); color:var(--text);}
+.kv a:hover{color:var(--green);}
+.field{margin-bottom:1rem;}
+.field label{display:block; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--steel); margin-bottom:0.35rem; font-family:'Courier New', Courier, monospace;}
+.field input, .field textarea{width:100%; background:var(--bg); border:1px solid var(--line); padding:0.7rem 0.9rem; color:var(--text); font-family:system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; font-size:0.85rem; border-radius:4px;}
+.field input:focus, .field textarea:focus{outline:none; border-color:var(--green);}
+
+footer{border-top:1px solid var(--line); padding:1.5rem 0; font-size:0.72rem; color:var(--steel);}
+.footer-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem; text-transform:uppercase; letter-spacing:0.05em;}
+
+@media(max-width:900px){
+  .hero .hero-grid{grid-template-columns:1fr;}
+  .about-grid, .contact-grid{grid-template-columns:1fr;}
+  .spec-grid{grid-template-columns:1fr;}
+  .sector-row{grid-template-columns:1fr 1fr;}
+  .testimonial-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .hero h1{font-size:2.2rem;}
+  .brand-logo{height: 100px; width: 100px;}
+  .brand-name{font-size:2rem;}
+  .brand-slogan{font-size:0.68rem;}
+  .brand-contact{font-size:0.6rem;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <div class="brand">
+      <!-- Logo (blanc avec vert foncé) -->
+      <img class="brand-logo" src="./logo-sinefo.avif" alt="Logo Complexe Sinefo" loading="lazy" />
+      <div class="brand-text">
+        <span class="brand-name">COMPLEXE SINEFO</span>
+        <!-- <span class="brand-slogan">Machines et équipements pharmaceutiques pour l'industrie et la santé.</span> -->
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#about">À propos</a>
+      <a href="#services">Équipements</a>
+      <a href="#secteurs">Secteurs</a>
+      <a href="#testimonials">Témoignages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="pill-btn">Devis technique</a>
+  </div>
+</header>
+
+<!-- HERO avec image de fond -->
+<!-- <section class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-grid">
+    <div data-aos="fade-right">
+      <span class="tag">Équipementier industriel — Douala</span>
+      <h1>Machines et équipements <span class="g">pharmaceutiques</span></h1>
+      <p>COMPLEXE SINEFO SARL fournit des machines et équipements pharmaceutiques destinés aux unités de production, laboratoires et industries de santé au Cameroun.</p>
+      <div class="btn-row">
+        <a href="#services" class="btn-solid">Voir les équipements</a>
+        <a href="#contact" class="btn-line">Nous contacter</a>
+      </div>
+    </div> 
+  </div>
+</section> -->
+
+<!-- ABOUT -->
+<!-- <section class="section-pad" id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual" data-aos="fade-right">
+      <img src="./sinefo2.jpg" alt="Atelier industriel" loading="lazy" />
+    </div>
+    <div data-aos="fade-left" data-aos-delay="100">
+      <span class="eyebrow">À propos</span>
+      <h2 class="stitle">Votre partenaire en équipements pharmaceutiques</h2>
+      <p><strong>COMPLEXE SINEFO SARL</strong> est une entreprise camerounaise spécialisée dans la fourniture de machines et équipements pour l'industrie pharmaceutique, les laboratoires et les structures de santé.</p>
+      <p>Dirigée par <strong>M. TALLA Joseph Valentin</strong>, l'entreprise propose un accompagnement technique complet : installation, formation, maintenance et étalonnage.</p>
+    </div>
+  </div>
+</section> -->
+
+<!-- ===== HERO MODIFIÉ ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-grid">
+    <div data-aos="fade-right">
+      <span class="tag">Équipementier industriel — Douala</span>
+      <!-- NOUVEAU H1 AVEC LE SLOGAN -->
+      <h1>Machines et équipements <span class="g">pharmaceutiques</span> pour l'industrie et la santé.</h1>
+      <!-- NOUVEAU PARAGRAPHE ALIGNÉ -->
+      <p>COMPLEXE SINEFO SARL est spécialisée dans l'import et la vente d'équipements pharmaceutiques et médicaux pour cliniques, hôpitaux et structures de santé au Cameroun.</p>
+      <div class="btn-row">
+        <a href="#services" class="btn-solid">Voir les équipements</a>
+        <a href="#contact" class="btn-line">Nous contacter</a>
+      </div>
+    </div> 
+  </div>
+</section>
+
+<!-- ===== ABOUT MODIFIÉ ===== -->
+<section class="section-pad" id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual" data-aos="fade-right">
+      <img src="./sinefo2.jpg" alt="Atelier industriel" loading="lazy" />
+    </div>
+    <div data-aos="fade-left" data-aos-delay="100">
+      <span class="eyebrow">À propos</span>
+      <!-- NOUVEAU H2 ALIGNÉ SUR LE SLOGAN -->
+      <h2 class="stitle">Machines et équipements pharmaceutiques pour l'industrie et la santé</h2>
+      <p><strong>COMPLEXE SINEFO SARL</strong> est une entreprise camerounaise spécialisée dans l'import et la vente d'équipements pharmaceutiques, de dispositifs médicaux et de machines pour les cliniques, hôpitaux et industries de santé.</p>
+      <p>Dirigée par <strong>M. TALLA Joseph Valentin</strong>, l'entreprise propose un accompagnement technique complet : installation, formation, maintenance et étalonnage, pour garantir la fiabilité des équipements livrés aux structures de santé.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES avec images produits -->
+<section class="section-pad" id="services">
+  <div class="wrap">
+    <span class="eyebrow" data-aos="fade-up">Catalogue technique</span>
+    <h2 class="stitle" data-aos="fade-up">Machines & équipements pharmaceutiques</h2>
+    <p class="ssub" data-aos="fade-up">Des machines et équipements pharmaceutiques adaptés aux besoins de production de nos clients, avec accompagnement technique.</p>
+    <div class="spec-grid" data-aos="fade-up">
+      <div class="spec-card">
+        <span class="code">EQP-01</span>
+        <img class="spec-img" src="./sinefo3.jpg" alt="Machines de production" loading="lazy" />
+        <h5>Machines de production</h5>
+        <p>Machines pour lignes de production pharmaceutique.</p>
+      </div>
+      <div class="spec-card">
+        <span class="code">EQP-02</span>
+        <img class="spec-img" src="./sinefo4.jpg" alt="Conditionnement" loading="lazy" />
+        <h5>Conditionnement pharmaceutique</h5>
+        <p>Machines et matériel de conditionnement pour l'industrie pharma.</p>
+      </div>
+      <div class="spec-card">
+        <span class="code">EQP-03</span>
+        <img class="spec-img" src="./sinefo5.jpg" alt="Étiquetage" loading="lazy" />
+        <h5>Étiquetage & impression</h5>
+        <p>Équipements d'étiquetage et d'impression pour produits pharmaceutiques.</p>
+      </div>
+      <div class="spec-card">
+        <span class="code">EQP-04</span>
+        <img class="spec-img" src="./sinefo6.jpg" alt="Salles blanches" loading="lazy" />
+        <h5>Salles blanches</h5>
+        <p>Équipements pour environnements contrôlés et salles blanches.</p>
+      </div>
+      <div class="spec-card">
+        <span class="code">EQP-05</span>
+        <img class="spec-img" src="./sinefo7.jpg" alt="Maintenance" loading="lazy" />
+        <h5>Maintenance & étalonnage</h5>
+        <p>Services de maintenance préventive et d'étalonnage des équipements.</p>
+      </div>
+      <div class="spec-card">
+        <span class="code">EQP-06</span>
+        <img class="spec-img" src="./sinefo8.jpg" alt="Installation" loading="lazy" />
+        <h5>Installation & formation</h5>
+        <p>Installation, mise en service et formation du personnel technique.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="section-pad" id="secteurs" style="padding-top:0;">
+  <div class="wrap">
+    <span class="eyebrow" data-aos="fade-up">Secteurs desservis</span>
+    <h2 class="stitle" data-aos="fade-up">Qui équipons-nous ?</h2>
+    <div class="sector-row" style="margin-top:1.8rem;" data-aos="fade-up">
+      <div class="sector-card"><span class="ic">💊</span><h6>Industries pharmaceutiques</h6><span>Production</span></div>
+      <div class="sector-card"><span class="ic">🏭</span><h6>Unités de conditionnement</h6><span>Conditionnement</span></div>
+      <div class="sector-card"><span class="ic">🔬</span><h6>Laboratoires industriels</h6><span>Contrôle & production</span></div>
+      <div class="sector-card"><span class="ic">🏥</span><h6>Structures de santé</h6><span>Équipement technique</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section-pad" id="testimonials">
+  <div class="wrap">
+    <span class="eyebrow" data-aos="fade-up">Témoignages</span>
+    <h2 class="stitle" data-aos="fade-up">Ce que nos partenaires disent</h2>
+    <p class="ssub" data-aos="fade-up">Des retours d'expérience de clients et partenaires de l'industrie pharmaceutique.</p>
+    <div class="testimonial-grid">
+      <div class="testimonial-card" data-aos="fade-up">
+        <div class="quote">COMPLEXE SINEFO nous a accompagnés dans l'installation de nos lignes de production. Leur expertise technique est remarquable.</div>
+        <div class="author">
+          <div class="avatar"><img src="https://picsum.photos/seed/av1/100/100" alt="Dr. Nanga" loading="lazy" /></div>
+          <div class="info"><div class="name">Dr. Nanga</div><div class="role">Directeur Industrie Pharma</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="quote">La réactivité et la qualité des équipements fournis ont permis d'optimiser notre conditionnement pharmaceutique.</div>
+        <div class="author">
+          <div class="avatar"><img src="https://picsum.photos/seed/av2/100/100" alt="Mme. Eloundou" loading="lazy" /></div>
+          <div class="info"><div class="name">Mme. Eloundou</div><div class="role">Responsable Assurance Qualité</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="quote">Un partenaire fiable pour la maintenance et l'étalonnage de nos instruments de laboratoire. Nous les recommandons.</div>
+        <div class="author">
+          <div class="avatar"><img src="https://picsum.photos/seed/av3/100/100" alt="Pr. Abodo" loading="lazy" /></div>
+          <div class="info"><div class="name">Pr. Abodo</div><div class="role">Chef de Laboratoire, CHU</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-pad" id="contact">
+  <div class="wrap contact-grid">
+    <div data-aos="fade-right">
+      <span class="eyebrow">Contact</span>
+      <h2 class="stitle">Demandez un devis technique</h2>
+      <form>
+        <div class="field"><label>Nom complet</label><input type="text" placeholder="Votre nom" required /></div>
+        <div class="field"><label>Email</label><input type="email" placeholder="vous@exemple.com" required /></div>
+        <div class="field"><label>Message</label><textarea rows="4" placeholder="Décrivez votre besoin en équipement..." required></textarea></div>
+        <button type="submit" class="btn-solid" style="border:none; cursor:pointer;">Envoyer</button>
+      </form>
+    </div>
+    <div data-aos="fade-left" data-aos-delay="150">
+      <div class="panel-box">
+        <div class="kv"><span class="k">Contact</span><span>M. TALLA Joseph Valentin</span></div>
+        <div class="kv"><span class="k">Téléphone</span><a href="tel:+237699012526">+237 699 012 526</a></div>
+        <div class="kv"><span class="k">Email</span><a href="mailto:complexesinefosarl@gmail.com">complexesinefosarl@gmail.com</a></div>
+        <div class="kv"><span class="k">Site web</span><a href="https://www.complexesinefosarl.com" target="_blank">complexesinefosarl.com</a></div>
+        <div class="kv"><span class="k">WhatsApp</span><a href="https://wa.me/237699012526" target="_blank">Écrire sur WhatsApp</a></div>
+        <div class="kv"><span class="k">Adresse</span><span>Douala, Cameroun</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 Complexe Sinefo SARL</span>
+    <span>Douala, Cameroun</span>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({ once:true, duration:600, easing:'ease-out-quad', offset:40 });</script>
+</body>
+</html>

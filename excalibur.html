@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EXCALIBUR RESEARCH CENTER — Produits chimiques de spécialité</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <style>
+    :root {
+      --ink: #1A1611;           /* noir profond */
+      --paper: #F6F1E7;         /* blanc cassé (fond) */
+      --paper2: #EDE5D3;        /* légèrement plus foncé */
+      --rule: rgba(26, 22, 17, 0.18);
+      --blue: #114670;          /* bleu principal (remplace l’or) */
+      --blue-deep: #0C3452;     /* bleu plus foncé pour les survols */
+      --steel: #6b6455;
+      --shadow: 0 8px 24px rgba(26, 22, 17, 0.08);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .serif-italic {
+      font-style: italic;
+      font-weight: 500;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    .mono {
+      font-family: 'Courier New', Courier, monospace;
+    }
+    a {
+      color: inherit;
+    }
+    .rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+
+    /* ---------- HEADER AVEC LOGO ET SLOGAN ---------- */
+    header.masthead {
+      padding: 1.2rem 0 0.8rem;
+      border-bottom: 2px solid var(--blue);
+      background: var(--paper);
+    }
+    .masthead-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+    }
+    .masthead-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .brand-logo {
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--blue);
+      flex-shrink: 0;
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .brand-name {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .brand-slogan {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--steel);
+      margin-top: 0.1rem;
+    }
+    .brand-contact {
+      font-size: 0.68rem;
+      color: var(--steel);
+      margin-top: 0.15rem;
+      font-family: 'Courier New', Courier, monospace;
+      letter-spacing: 0.04em;
+    }
+    .brand-contact a {
+      color: var(--blue);
+      border-bottom: 1px solid var(--blue);
+      text-decoration: none;
+    }
+    .brand-contact a:hover {
+      color: var(--blue-deep);
+      border-color: var(--blue-deep);
+    }
+    .masthead-meta {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--steel);
+      text-align: right;
+      margin-left: auto;
+    }
+
+    /* -------- sous-navigation -------- */
+    nav.subnav {
+      display: flex;
+      gap: 1.6rem;
+      padding: 0.7rem 0 0.3rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--rule);
+      margin-top: 0.6rem;
+    }
+    nav.subnav a {
+      text-decoration: none;
+      color: var(--steel);
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: 0.2s;
+    }
+    nav.subnav a:hover {
+      color: var(--blue);
+      border-color: var(--blue);
+    }
+
+    /* ---------- HERO (accent bleu) ---------- */
+    .hero-section {
+      position: relative;
+      padding: 4rem 0;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--paper);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-image: url('./excalibure2.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.55) saturate(0.9);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26, 22, 17, 0.75) 0%, rgba(26, 22, 17, 0.30) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+    }
+    .hero-content .kicker {
+      color: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid var(--blue);
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+    .hero-content h1 {
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    }
+    .hero-content .lead {
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .hero-content .pull-box {
+      border-left: 3px solid var(--blue);
+      color: rgba(255, 255, 255, 0.95);
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(4px);
+      padding: 1.2rem 1.5rem;
+      border-radius: 4px;
+    }
+    .hero-content .pull-box .attr {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .kicker {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blue);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .pull-box {
+      border-left: 3px solid var(--blue);
+      padding-left: 1.3rem;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: #3a352c;
+    }
+    .pull-box .attr {
+      display: block;
+      margin-top: 0.8rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-style: normal;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+    .section-label {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+    .dropcap:first-letter {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 3.6rem;
+      float: left;
+      line-height: 0.8;
+      padding-right: 0.5rem;
+      padding-top: 0.3rem;
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .stat-mini {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .stat-mini div {
+      border-top: 1px solid var(--rule);
+      padding-top: 0.5rem;
+      min-width: 100px;
+    }
+    .stat-mini .n {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+    .stat-mini .l {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--steel);
+    }
+
+    .photo-card {
+      background: var(--paper2);
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      transition: 0.3s;
+    }
+    .photo-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+    }
+    .photo-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      background: #d5cdbb;
+    }
+    .photo-card .caption {
+      padding: 0.7rem 0.9rem 0.9rem;
+      font-family: 'Courier New', Courier, monospace;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.6rem;
+      color: var(--steel);
+    }
+    .entry {
+      display: grid;
+      grid-template-columns: 70px 1fr 1.4fr;
+      gap: 1.2rem;
+      padding: 1.3rem 0;
+      border-top: 1px solid var(--rule);
+      align-items: baseline;
+    }
+    .entry:first-of-type {
+      border-top: none;
+    }
+    .entry .num {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 1.3rem;
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .entry p {
+      color: #5a5344;
+      font-size: 0.92rem;
+      margin: 0;
+    }
+    .testimonial-card {
+      background: var(--paper);
+      padding: 1.8rem 1.8rem 1.6rem;
+      border: 1px solid var(--rule);
+      transition: 0.3s;
+      height: 100%;
+    }
+    .testimonial-card:hover {
+      box-shadow: var(--shadow);
+    }
+    .testimonial-card .quote {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #2a2520;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .testimonial-card .quote::before {
+      content: "“";
+      font-size: 2.2rem;
+      color: var(--blue);
+      line-height: 0.8;
+      margin-right: 0.15rem;
+    }
+    .testimonial-card .quote::after {
+      content: "”";
+      font-size: 2.2rem;
+      color: var(--blue);
+      line-height: 0.8;
+      margin-left: 0.1rem;
+    }
+    .testimonial-card .author {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 0.6rem;
+    }
+    .testimonial-card .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #d5cdbb;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid var(--blue);
+    }
+    .testimonial-card .author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .testimonial-card .author-info .name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    .testimonial-card .author-info .role {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: none;
+      border-bottom: 1.5px solid var(--ink);
+      background: transparent;
+      padding: 0.5rem 0.1rem;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+    .btn-editorial {
+      display: inline-block;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--blue);
+      color: var(--paper);
+      border: none;
+      padding: 0.8rem 1.6rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: 0.25s;
+    }
+    .btn-editorial:hover {
+      background: var(--blue-deep);
+    }
+    .masthead-contact {
+      background: var(--paper2);
+      padding: 1.8rem;
+      border: 1px solid var(--rule);
+    }
+    .masthead-contact .row {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.92rem;
+    }
+    .masthead-contact .row span.k {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: var(--steel);
+      width: 80px;
+      flex-shrink: 0;
+      padding-top: 0.15rem;
+    }
+    .masthead-contact a {
+      text-decoration: none;
+      border-bottom: 1px solid var(--blue);
+      color: var(--blue);
+    }
+    .masthead-contact a:hover {
+      color: var(--blue-deep);
+      border-color: var(--blue-deep);
+    }
+    footer {
+      border-top: 2px solid var(--blue);
+      padding: 1.5rem 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--steel);
+    }
+
+    /* -------- Responsive -------- */
+    @media (max-width: 820px) {
+      .entry {
+        grid-template-columns: 50px 1fr;
+      }
+      .entry p {
+        grid-column: 2;
+      }
+      nav.subnav {
+        display: none;
+      }
+      .hero-section {
+        padding: 2.5rem 0;
+        min-height: 300px;
+      }
+      .hero-content .pull-box {
+        margin-top: 1.5rem;
+      }
+      .masthead-meta {
+        display: none;
+      }
+    }
+    @media (max-width: 480px) {
+      .brand-name {
+        font-size: 1.2rem;
+      }
+      .brand-slogan {
+        font-size: 0.7rem;
+      }
+      .brand-logo {
+        height: 40px;
+        width: 40px;
+      }
+      .pull-box {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="container">
+      <div class="masthead-row">
+        <div class="masthead-brand">
+          <!-- Logo (fichier image.png) -->
+          <img class="brand-logo" src="./logo-excalibure.png" alt="Logo Excalibur Research Center" loading="lazy" />
+          <div class="brand-text">
+            <span class="brand-name">EXCALIBUR RESEARCH CENTER</span>
+          </div>
+        </div>
+        <div class="masthead-meta">
+          Douala — Cameroun<br />Chimie de spécialité, éd. 2026
+        </div>
+      </div>
+      <nav class="subnav">
+        <a href="#about">01 — Présentation</a>
+        <a href="#photos">02 — Galerie</a>
+        <a href="#services">03 — Catalogue</a>
+        <a href="#testimonials">04 — Témoignages</a>
+        <a href="#contact">05 — Correspondance</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <!-- <section class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <div class="row align-items-start g-4">
+        <div class="col-lg-8" data-aos="fade-up">
+          <span class="kicker">Fournisseur camerounais — depuis Douala</span>
+          <h1 class="display-4 fw-bold">Des produits chimiques de <span class="serif-italic">spécialité</span>, choisis pour la recherche et l'industrie.</h1>
+          <p class="lead" style="max-width:46ch;">EXCALIBUR RESEARCH CENTER SARL sélectionne, importe et livre des produits chimiques de spécialité aux laboratoires, centres de recherche et industries du Cameroun.</p>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="150">
+          <div class="pull-box">
+            « La rigueur d'un réactif se mesure autant à sa pureté qu'à la constance de son fournisseur. »
+            <span class="attr">— M. Atangana Laurent, Fondateur</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ===== HERO MODIFIÉ ===== -->
+  <section class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <div class="row align-items-start g-4">
+        <div class="col-lg-8" data-aos="fade-up">
+          <span class="kicker">Fournisseur camerounais — depuis Douala</span>
+          <!-- NOUVEAU H1 AVEC LE SLOGAN -->
+          <h1 class="display-4 fw-bold">Equipements pharmaceutiques. <span class="serif-italic" style="color:var(--blue);">qualité/prix.</span></h1>
+          <!-- NOUVEAU PARAGRAPHE ALIGNÉ -->
+          <p class="lead" style="max-width:46ch;">EXCALIBUR RESEARCH CENTER SARL est spécialisée dans l'import et la vente d'équipements pharmaceutiques et médicaux destinés aux cliniques, hôpitaux et structures de santé au Cameroun.</p>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="150">
+          <div class="pull-box">
+            « La rigueur d'un réactif se mesure autant à sa pureté qu'à la constance de son fournisseur. »
+            <span class="attr">— M. Atangana Laurent, Fondateur</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ===== ABOUT ===== -->
+  <section class="py-5" id="about">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-3" data-aos="fade-up">
+          <span class="section-label">Présentation</span>
+          <h2 class="display-6 fw-bold">Qui sommes-nous</h2>
+        </div>
+        <div class="col-lg-9" data-aos="fade-up" data-aos-delay="100">
+          <p class="dropcap">EXCALIBUR RESEARCH CENTER SARL est une entreprise camerounaise spécialisée dans la fourniture de produits chimiques de spécialité destinés aux laboratoires de recherche, aux industries et aux centres d'analyse.</p>
+          <p>Sous la direction de <strong>M. Atangana Laurent</strong>, notre équipe met un point d'honneur à garantir la traçabilité, la conformité et la qualité de chaque produit livré à nos clients, avec un accompagnement technique personnalisé.</p>
+          <div class="stat-mini">
+            <div><span class="n">100%</span><span class="l">Traçabilité</span></div>
+            <div><span class="n">FDS</span><span class="l">Fiches fournies</span></div>
+            <div><span class="n">DLA</span><span class="l">Livraison rapide</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALERIE ===== -->
+  <section class="py-5 border-top border-bottom border-2 border-dark" id="photos">
+    <div class="container">
+      <span class="section-label" data-aos="fade-up">Galerie</span>
+      <h2 class="display-6 fw-bold" data-aos="fade-up">Notre laboratoire &amp; installations</h2>
+      <p class="text-secondary" style="max-width:60ch;" data-aos="fade-up">Un aperçu de nos espaces de travail, de notre équipement et de notre engagement pour la qualité.</p>
+      <div class="row g-4 mt-2">
+        <div class="col-md-3" data-aos="fade-up">
+          <div class="photo-card"><img src="./excalibure3.jpg" alt="Laboratoire" loading="lazy" /><div class="caption">Laboratoire d'analyse — Douala</div></div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="80">
+          <div class="photo-card"><img src="./excalibure4.jpg" alt="Équipement" loading="lazy" /><div class="caption">Équipement de chromatographie</div></div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="160">
+          <div class="photo-card"><img src="./excalibure5.jpg" alt="Stock" loading="lazy" /><div class="caption">Stock de réactifs — zone sécurisée</div></div>
+        </div>
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="240">
+          <div class="photo-card"><img src="./excalibure6.jpg" alt="Équipe" loading="lazy" /><div class="caption">Équipe technique &amp; logistique</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="py-5" id="services">
+    <div class="container">
+      <span class="section-label" data-aos="fade-up">Catalogue</span>
+      <h2 class="display-6 fw-bold" data-aos="fade-up">Équipements pharmaceutiques et médicaux</h2>
+      <p class="text-secondary" style="max-width:60ch;" data-aos="fade-up">Une sélection d’équipements certifiés, avec garantie et service après‑vente, destinés aux cliniques, hôpitaux et laboratoires.</p>
+      <div class="mt-4">
+        <div class="entry" data-aos="fade-up">
+          <span class="num">01</span>
+          <h4>Appareils d’imagerie médicale</h4>
+          <p>Échographes, radiologie numérique, scanners et IRM pour un diagnostic précis et fiable.</p>
+        </div>
+        <div class="entry" data-aos="fade-up">
+          <span class="num">02</span>
+          <h4>Équipements de laboratoire</h4>
+          <p>Analyseurs biochimiques, microscopes, centrifugeuses et automates pour analyses cliniques.</p>
+        </div>
+        <div class="entry" data-aos="fade-up">
+          <span class="num">03</span>
+          <h4>Matériel de monitoring patient</h4>
+          <p>Moniteurs multiparamétriques, ECG, oxymètres de pouls, tensiomètres électroniques.</p>
+        </div>
+        <div class="entry" data-aos="fade-up">
+          <span class="num">04</span>
+          <h4>Dispositifs médicaux jetables</h4>
+          <p>Seringues, cathéters, aiguilles, perfuseurs et matériel à usage unique, stérile et sécurisé.</p>
+        </div>
+        <div class="entry" data-aos="fade-up">
+          <span class="num">05</span>
+          <h4>Équipements de stérilisation</h4>
+          <p>Autoclaves, étuves, bains‑marie, systèmes de nettoyage et de désinfection pour instruments.</p>
+        </div>
+        <div class="entry" data-aos="fade-up">
+          <span class="num">06</span>
+          <h4>Instrumentation chirurgicale</h4>
+          <p>Tables d’opération, lampes scialytiques, bistouris électriques, aspirateurs et respirateurs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TÉMOIGNAGES ===== -->
+  <section class="py-5" style="background:var(--paper2);" id="testimonials">
+    <div class="container">
+      <span class="section-label" data-aos="fade-up">Témoignages</span>
+      <h2 class="display-6 fw-bold" data-aos="fade-up">Ce que disent nos clients</h2>
+      <p class="text-secondary" style="max-width:60ch;" data-aos="fade-up">Des retours d'expérience de partenaires industriels et de laboratoires qui nous font confiance.</p>
+      <div class="row g-4 mt-2">
+        <div class="col-md-4" data-aos="fade-up">
+          <div class="testimonial-card">
+            <div class="quote">Excalibur Research Center nous livre des réactifs de haute pureté avec une régularité exemplaire. Le suivi est rigoureux et les fiches FDS toujours à jour.</div>
+            <div class="author">
+              <div class="author-avatar"><img src="https://picsum.photos/id/64/80/80" alt="Dr. Mbarga" loading="lazy" /></div>
+              <div class="author-info"><div class="name">Dr. Paul Mbarga</div><div class="role">Directeur — Labo d'Analyse Pharma</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="testimonial-card">
+            <div class="quote">La réactivité de l'équipe et la qualité des solvants industriels nous ont permis de stabiliser nos chaînes de production. Un partenaire fiable.</div>
+            <div class="author">
+              <div class="author-avatar"><img src="https://picsum.photos/id/27/80/80" alt="Mme. Essomba" loading="lazy" /></div>
+              <div class="author-info"><div class="name">Mme. Carine Essomba</div><div class="role">Responsable QA — Industrie Cosmétique</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="testimonial-card">
+            <div class="quote">Depuis que nous travaillons avec Excalibur, la traçabilité de nos réactifs est irréprochable. Leur accompagnement technique fait la différence.</div>
+            <div class="author">
+              <div class="author-avatar"><img src="https://picsum.photos/id/91/80/80" alt="Pr. Ntouba" loading="lazy" /></div>
+              <div class="author-info"><div class="name">Pr. Samuel Ntouba</div><div class="role">Chercheur — Université de Yaoundé</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="py-5" id="contact">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6" data-aos="fade-up">
+          <span class="section-label">Correspondance</span>
+          <h2 class="display-6 fw-bold">Nous écrire</h2>
+          <form>
+            <div class="field mb-3"><label class="mono small text-uppercase" style="color:var(--steel);">Nom complet</label><input type="text" class="form-control" placeholder="Votre nom" style="border:none;border-bottom:1.5px solid var(--ink);border-radius:0;padding:0.5rem 0.1rem;background:transparent;" required /></div>
+            <div class="field mb-3"><label class="mono small text-uppercase" style="color:var(--steel);">Email</label><input type="email" class="form-control" placeholder="vous@exemple.com" style="border:none;border-bottom:1.5px solid var(--ink);border-radius:0;padding:0.5rem 0.1rem;background:transparent;" required /></div>
+            <div class="field mb-3"><label class="mono small text-uppercase" style="color:var(--steel);">Objet</label><input type="text" class="form-control" placeholder="Objet de votre demande" style="border:none;border-bottom:1.5px solid var(--ink);border-radius:0;padding:0.5rem 0.1rem;background:transparent;" /></div>
+            <div class="field mb-3"><label class="mono small text-uppercase" style="color:var(--steel);">Message</label><textarea class="form-control" rows="4" placeholder="Votre message..." style="border:none;border-bottom:1.5px solid var(--ink);border-radius:0;padding:0.5rem 0.1rem;background:transparent;" required></textarea></div>
+            <button type="submit" class="btn-editorial">Envoyer la demande</button>
+          </form>
+        </div>
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
+          <div class="masthead-contact">
+            <div class="row"><span class="k">Contact</span><span>M. Atangana Laurent</span></div>
+            <div class="row"><span class="k">Téléphone</span><a href="tel:+237695033901">+237 695 033 901</a></div>
+            <div class="row"><span class="k">Email</span><a href="mailto:stephaneballa2804@gmail.com">stephaneballa2804@gmail.com</a></div>
+            <div class="row"><span class="k">Site web</span><a href="https://www.erecs.com" target="_blank">www.erecs.com</a></div>
+            <div class="row"><span class="k">WhatsApp</span><a href="https://wa.me/237695033901" target="_blank">+237 695 033 901</a></div>
+            <hr class="rule" style="margin:1rem 0;" />
+            <div class="row"><span class="k">Adresse</span><span>Douala, Cameroun</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container d-flex justify-content-between flex-wrap gap-2">
+      <span>© 2026 Excalibur Research Center SARL</span>
+      <span>Douala, Cameroun</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js">
+  </script>
+  <script>
+    AOS.init({ once: true, duration: 650, easing: 'ease-out-quad', offset: 40 });
+  </script>
+</body>
+</html>
